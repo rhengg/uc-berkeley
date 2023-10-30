@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Routes, Navigate } from "react-router-dom";
+import Home from './pages/Home'
+import Admin from './layout/admin'
+import Detail from './pages/Detail';
+import Login from './pages/Auth/Login';
+import Auth from './pages/Auth';
+import NotFound from './pages/404';
+import Cookies from 'js-cookie';
+import Register from './pages/Auth/register';
 
-function App() {
+const App = () => {
+
+
+  const isUserAuthenticated = () => {
+    const cookie = Cookies.get('testUserAuthenticated');
+    console.log("cookies found", cookie);
+
+    if (cookie) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Routes>
+        {!isUserAuthenticated() &&
+          <Route element={<Auth />}>
+            <Route path="/signin" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path='*' element={<Navigate to="/signin" />} />
+          </Route>
+        }
+        {isUserAuthenticated() &&
+          <Route element={<Admin />}>
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/detail" element={<Detail />}></Route>
+            <Route path='*' element={<NotFound />} />
+          </Route>
+        }
+      </Routes>
+    </>
+  )
 }
 
-export default App;
+export default App
