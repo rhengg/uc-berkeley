@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import CountCard from './components/CountCard';
 import './css/styles.css';
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
         name='Arijit Singh'
         origin='India'
       />
+
+      <CountCard />
     </div>
   );
 }

@@ -317,3 +317,28 @@
 .icon:hover{
   background: var(--stroke);
 }
+
+.count-card-container{
+  width: 18rem;
+  height: 7.5rem;
+  padding: 1rem;
+  border: 1px solid red;
+  border-radius: 0.25rem;
+}
+
+.count-card-up{
+  width: 100%;
+  height: 30%;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: red;
+}
+
+.count-card-down{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70%;
+}
+
