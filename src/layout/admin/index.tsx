@@ -141,7 +141,7 @@ const Index = () => {
                     </Box>
                 </Grid>
             </Grid > */}
-            <div style={{ background: "grey" }}>
+            <div>
                 <Outlet />
             </div>
         </>
