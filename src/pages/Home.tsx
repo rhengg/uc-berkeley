@@ -3,7 +3,6 @@ import Card from '../components/Card'
 import CountCard from '../components/CountCard'
 import Navigation from '../components/Navigation'
 import data from '../database/Soundcharts.json'
-import '../css/styles.css'
 
 const Home = () => {
     console.log('data', data)
@@ -11,7 +10,7 @@ const Home = () => {
 
     return (
         <div style={{ padding: '0rem 4rem' }}>
-            <Navigation />
+            {/* <Navigation /> */}
 
             <div style={{ padding: '1.5rem 0' }} >
 
@@ -28,7 +27,7 @@ const Home = () => {
 
             <div >
                 <div style={{ overflowX: "auto" }}>
-                    <table>
+                    <table className='home-table'>
                         <tr>
                             <th>Artist</th>
                             <th>Spotify</th>
