@@ -3,10 +3,16 @@ import Card from '../components/Card'
 import CountCard from '../components/CountCard'
 import Navigation from '../components/Navigation'
 import data from '../database/Soundcharts.json'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     console.log('data', data)
+    const navigate = useNavigate()
     const [searchTitle, setSearchTitle] = React.useState("");
+
+    const handleCardClick = (id: string) => {
+        navigate({ pathname: "/detail", search: id })
+    }
 
     return (
         <div style={{ padding: '0rem 4rem' }}>
@@ -60,7 +66,7 @@ const Home = () => {
                                     return (
                                         <tr>
                                             <td>
-                                                <Card name={item.artist} origin={item.artist_country} />
+                                                <Card name={item.artist} origin={item.artist_country} id={"2"} handleCardClick={handleCardClick} />
                                             </td>
                                             <td>
                                                 <div style={{

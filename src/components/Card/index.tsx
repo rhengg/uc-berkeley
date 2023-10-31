@@ -3,14 +3,16 @@ import { MdNorthEast, MdBookmarkBorder } from 'react-icons/md'
 
 type CardProps = {
 	name: string
+	id?: string
 	image?: string
 	origin?: string
+	handleCardClick: (id: string) => void
 }
 
 
 
 const Card = (props: CardProps) => {
-	const { name, image, origin } = props
+	const { id, name, image, origin, handleCardClick } = props
 
 	return (
 		<div className="card-container">
@@ -54,7 +56,7 @@ const Card = (props: CardProps) => {
 				</div>
 			</div>
 			<div className="card-icon-holder">
-				<div className="icon">
+				<div className="icon" onClick={() => handleCardClick(id as string)}>
 					<MdNorthEast />
 				</div>
 			</div>
