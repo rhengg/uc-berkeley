@@ -46,7 +46,7 @@ const Login = () => {
     }
 
     return (
-        <div style={{ marginTop: "16.5vh", maxWidth: "24rem" }}>
+        <div>
             <form onSubmit={handleLoginApiCall}>
                 <p style={{
                     display: "block",

@@ -2,21 +2,12 @@ import React from 'react'
 
 const AuthLayout = ({ children }: any) => {
     return (
-        <div style={{ display: "flex", width: '100%', minHeight: '100vh', padding: "0" }} >
-            <div style={{
-                width: "35%",
-                backgroundColor: "#45474B",
-            }}
-            >
+        <div className='auth-layout-main' >
+            <div className='auth-layout-container'>
+                <div className='auth-layout-content-circle'></div>
+                <p className='auth-layout-content-text'>South Asian Musicians</p>
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    width: '65%',
-                    justifyContent: 'center',
-                    alignItems: "center",
-                }}
-            >
+            <div className='auth-layout-children-container'>
                 {children}
             </div>
         </div>

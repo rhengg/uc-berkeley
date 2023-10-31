@@ -132,12 +132,8 @@ const Register = () => {
     }
 
     return (
-        <div style={{ maxWidth: "24rem" }}>
-            <p style={{
-                display: "block",
-                fontSize: "1.25rem",
-                marginBottom: "1rem"
-            }}>
+        <div style={{ border: "1px solid red" }}>
+            <p className='register-heading'>
                 Create an Account
             </p>
             <div style={{ maxHeight: "35rem" }}>
@@ -155,9 +151,7 @@ const Register = () => {
                                 }}
                                 onClick={handleSignInClick}
                             >
-                                {/* <p style={{ fontSize: "1.0625rem" }}> */}
                                 Sign In
-                                {/* </p> */}
                             </button>
                         </div>
                     </>
@@ -169,8 +163,7 @@ const Register = () => {
                         {formData.map((item, index) => {
                             return (
                                 <div key={index}>
-                                    <p style={{ display: "block", color: "red", fontSize: "0.75rem", marginBottom: "0.25rem" }}
-                                    >
+                                    <p className='input-title'>
                                         {item.title}
                                     </p>
                                     <input
