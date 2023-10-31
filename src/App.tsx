@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from './pages/Home'
-import Admin from './layout/admin'
+import HomeLayout from './layout/home'
 import Detail from './pages/Detail';
 import Login from './pages/Auth/Login';
 import Auth from './pages/Auth';
@@ -34,7 +34,7 @@ const App = () => {
           </Route>
         }
         {isUserAuthenticated() &&
-          <Route element={<Admin />}>
+          <Route element={<HomeLayout />}>
             <Route path="/home" element={<Home />}></Route>
             <Route path="/detail" element={<Detail />}></Route>
             <Route path='*' element={<NotFound />} />

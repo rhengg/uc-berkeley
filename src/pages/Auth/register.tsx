@@ -193,7 +193,7 @@ const Register = () => {
                             className='large-primary-btn'
                             style={{
                                 width: "100%",
-                                marginBottom: "2rem"
+                                margin: "2rem 0"
                             }}
                         >
                             Sign Up
