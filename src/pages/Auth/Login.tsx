@@ -1,8 +1,5 @@
 import Cookies from 'js-cookie'
 import React from 'react'
-// import { Box, Heading, useTheme, Text, Input, Button, Flex } from '@chakra-ui/react'
-// import { FaArrowRight } from 'react-icons/fa'
-// import axios, { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -46,20 +43,16 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className='auth-form'>
             <form onSubmit={handleLoginApiCall}>
-                <p style={{
-                    display: "block",
-                    fontSize: "1.25rem",
-                    marginBottom: "1rem"
-                }}>
+                <p className='auth-header'>
                     Sign in
                 </p>
-                <p style={{ display: "block", color: "red", fontSize: "0.75rem", marginBottom: "0.25rem" }}
-                >
+                <p className='input-title'>
                     Email
                 </p>
                 <input
+                    className='input-main'
                     type='email'
                     value={inputEmail}
                     onChange={(e) => setInputEmail(e.target.value)}
@@ -68,16 +61,16 @@ const Login = () => {
                 />
                 <div style={{ minHeight: "1rem" }}>
                     {inputError === "email" &&
-                        <p style={{ fontSize: "0.5rem", paddingTop: "0.25rem", margin: 0, color: "red" }}>Required field!</p>
+                        <p className='error-text required-error-text-space'>Required field!</p>
 
                     }
                 </div>
 
-                <p style={{ display: "block", color: "red", fontSize: "0.75rem", marginBottom: "0.25rem" }}
-                >
+                <p className='input-title'>
                     Password
                 </p>
                 <input
+                    className='input-main'
                     autoComplete='off'
                     type='password'
                     value={inputPassword}
@@ -85,53 +78,46 @@ const Login = () => {
                     name='password'
                     placeholder='********'
                 />
-                <div style={{ minHeight: "1rem" }}>
+                <div className='error-container'>
                     {inputError === "password" &&
-                        <p style={{ fontSize: "0.5rem", paddingTop: "0.25rem", margin: 0, color: "red" }}>Required field!</p>
+                        <p className='error-text required-error-text-space'>Required field!</p>
 
                     }
                 </div>
 
-                <div style={{ minHeight: "1rem" }}>
+                <div className='error-container'>
                     {
                         unRegisteredEmail &&
-                        <p style={{ fontSize: "0.75rem", color: "red" }}>Unregistered email!</p>
+                        <p className='error-text'>Unregistered email!</p>
                     }
                     {
                         invalidPassword &&
-                        <p style={{ fontSize: "0.75rem", color: "red" }}>Invalid Password!</p>
+                        <p className='error-text'>Invalid Password!</p>
 
                     }
                 </div>
 
-                <div style={{ display: "flex", flexDirection: 'column' }} >
-                    <div style={{ marginTop: "2rem" }}>
-                        <button
-                            type="submit"
-                            style={{
-                                width: "100%",
-                                height: "3rem",
-                                background: "green",
-                                color: "yellow"
-                            }}
-                        >
-                            Sign In
-                        </button>
-                    </div>
-                    <div style={{ marginTop: "2rem" }}>
-                        <button
-                            style={{
-                                width: "100%",
-                                height: "3rem",
-                                background: "green",
-                                color: "yellow"
-                            }}
-                            onClick={handleAccountCreateClick}
-                        >
-                            I don't have an account
-                        </button>
-                    </div>
-                </div>
+
+                <button
+                    type="submit"
+                    className='large-primary-btn'
+                    style={{
+                        width: "100%",
+                        marginBottom: "2rem"
+                    }}
+                >
+                    Sign In
+                </button>
+
+                <button
+                    className='large-secondary-btn'
+                    style={{
+                        width: "100%",
+                    }}
+                    onClick={handleAccountCreateClick}
+                >
+                    I don't have an account
+                </button>
             </form>
         </div>
     )
