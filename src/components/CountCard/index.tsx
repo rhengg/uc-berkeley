@@ -1,33 +1,47 @@
 import React from "react";
-import { MdArrowUpward } from 'react-icons/md'
+import { MdArrowUpward, MdArrowDownward } from 'react-icons/md'
 import '../../css/styles.css'
-const CountCard = () => {
+
+type CountCardProps = {
+	id?: string
+	title: string
+	value: string
+	percentage: string
+	percentageStatus?: 'inc' | 'dec'
+}
+
+const CountCard = (props: CountCardProps) => {
+
+	const { id, percentage, value, title, percentageStatus } = props
+
 	return (
 		<div className="count-card-container">
 			<div className="count-card-up" >
-				<p className="body"> Followers </p>
+				<p className="body"> {title} </p>
 			</div>
 			<div className="count-card-down">
 				<div style={{ width: '60%' }}>
-					<p className="body"> 1900000 </p>
+					<p className="body"> {value} </p>
 				</div>
 
 				<div style={{
 					display: "flex",
-					border: '1px solid red',
 					alignItems: 'center',
+					justifyContent: 'flex-end',
 					width: '40%',
-					justifyContent: 'flex-end'
 				}}>
-					<div style={{ width: '50%', border: '1px solid red' }}>
-						<p className="body">8% </p>
-					</div>
-
-					<div style={{ width: '50%', height: '100%', border: '1px solid red' }}>
-						<div className="icon">
-							<MdArrowUpward />
-						</div>
-					</div>
+					{
+						percentageStatus === 'inc' ?
+							<>
+								<p className="body positive">{percentage}% </p>
+								<MdArrowUpward className="positive" height={'48px'} />
+							</>
+							:
+							<>
+								<p className="body negative">{percentage}% </p>
+								<MdArrowDownward className="negative" height={'48px'} />
+							</>
+					}
 				</div>
 			</div>
 		</div>
