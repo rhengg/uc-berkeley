@@ -3,18 +3,30 @@ import Card from '../components/Card'
 import CountCard from '../components/CountCard'
 import Navigation from '../components/Navigation'
 import data from '../database/Soundcharts.json'
+import '../css/styles.css'
 
 const Home = () => {
     console.log('data', data)
+    const [searchTitle, setSearchTitle] = React.useState("");
+
     return (
         <div style={{ padding: '0rem 4rem' }}>
             <Navigation />
 
-            <div style={{ marginTop: '2rem', padding: '2rem 0', border: '1px solid red' }} >
+            <div style={{ padding: '1.5rem 0' }} >
+
+                <input
+                    className='input-main'
+                    type={'text'}
+                    name={'search'}
+                    placeholder={'Search'}
+                    value={searchTitle}
+                    onChange={(e) => setSearchTitle(e.target.value)}
+                />
 
             </div>
 
-            <div style={{ marginTop: '2rem' }}>
+            <div >
                 <div style={{ overflowX: "auto" }}>
                     <table>
                         <tr>
@@ -35,94 +47,104 @@ const Home = () => {
                         </tr>
 
                         {
-                            data.map((item: any, index: number) => {
-                                return (
-                                    <tr>
-                                        <td>
-                                            <Card name={item.artist} origin={item.artist_country} />
-                                        </td>
-                                        <td>
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '1rem'
-                                            }}>
-                                                <CountCard title='Followers' percentage='8' value={item.spotify_followers_total} percentageStatus='inc' />
-                                                <CountCard title='Monthly listeners' percentage='8' value={item.spotify_monthly_listeners_total} percentageStatus='inc' />
-                                            </div>
-                                        </td>
+                            data
+                                .filter((value) => {
+                                    if (searchTitle === "") {
+                                        return value;
+                                    } else if (
+                                        value.artist.toLowerCase().includes(searchTitle.toLowerCase())
+                                    ) {
+                                        return value;
+                                    }
+                                })
+                                .map((item: any, index: number) => {
+                                    return (
+                                        <tr>
+                                            <td>
+                                                <Card name={item.artist} origin={item.artist_country} />
+                                            </td>
+                                            <td>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    gap: '1rem'
+                                                }}>
+                                                    <CountCard title='Followers' percentage='8' value={item.spotify_followers_total} percentageStatus='inc' />
+                                                    <CountCard title='Monthly listeners' percentage='8' value={item.spotify_monthly_listeners_total} percentageStatus='inc' />
+                                                </div>
+                                            </td>
 
-                                        <td>
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '1rem'
-                                            }}>
-                                                <CountCard title='Subscribers' percentage='8' value={item.YouTube_subscribers_Change} percentageStatus='inc' />
-                                                <CountCard title='Views' percentage='8' value={item.YouTube_views_Total} percentageStatus='inc' />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '1rem'
-                                            }}>
-                                                <CountCard title='Followers' percentage='8' value={item.Instagram_followers_Total} percentageStatus='inc' />
-                                            </div>
-                                        </td>
-                                        <td style={{ textAlign: 'initial' }}>
-                                            <CountCard title='Followers' percentage='8' value={item.TikTok_followers_Total} percentageStatus='dec' />
-                                        </td>
-                                        <td>
-                                            <CountCard title='Followers' percentage='8' value={item.Deezer_fans_Total} percentageStatus='dec' />
-                                        </td>
-                                        <td>
-                                            <CountCard title='Followers' percentage='8' value={item.Facebook_fans_Total} percentageStatus='dec' />
-                                        </td>
-                                        <td>
-                                            <CountCard title='Followers' percentage='8' value={item.Soundcloud_followers_Total} percentageStatus='inc' />
-                                        </td>
-                                        <td>
-                                            <CountCard title='Followers' percentage='8' value={item.Line_music_followers_Total} percentageStatus='inc' />
-                                        </td>
-                                        <td>
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '1rem'
-                                            }}>
-                                                <CountCard title='Listeners' percentage='8' value={item.Anghami_plays_Total} percentageStatus='inc' />
-                                                <CountCard title='Followers' percentage='8' value={item.Anghami_followers_Total} percentageStatus='inc' />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <CountCard title='Favourites' percentage='8' value={item.Gaana_favorites_Total} percentageStatus='dec' />
-                                        </td>
-                                        <td>
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '1rem'
-                                            }}>
+                                            <td>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    gap: '1rem'
+                                                }}>
+                                                    <CountCard title='Subscribers' percentage='8' value={item.YouTube_subscribers_Change} percentageStatus='inc' />
+                                                    <CountCard title='Views' percentage='8' value={item.YouTube_views_Total} percentageStatus='inc' />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    gap: '1rem'
+                                                }}>
+                                                    <CountCard title='Followers' percentage='8' value={item.Instagram_followers_Total} percentageStatus='inc' />
+                                                </div>
+                                            </td>
+                                            <td style={{ textAlign: 'initial' }}>
+                                                <CountCard title='Followers' percentage='8' value={item.TikTok_followers_Total} percentageStatus='dec' />
+                                            </td>
+                                            <td>
+                                                <CountCard title='Followers' percentage='8' value={item.Deezer_fans_Total} percentageStatus='dec' />
+                                            </td>
+                                            <td>
+                                                <CountCard title='Followers' percentage='8' value={item.Facebook_fans_Total} percentageStatus='dec' />
+                                            </td>
+                                            <td>
+                                                <CountCard title='Followers' percentage='8' value={item.Soundcloud_followers_Total} percentageStatus='inc' />
+                                            </td>
+                                            <td>
+                                                <CountCard title='Followers' percentage='8' value={item.Line_music_followers_Total} percentageStatus='inc' />
+                                            </td>
+                                            <td>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    gap: '1rem'
+                                                }}>
+                                                    <CountCard title='Listeners' percentage='8' value={item.Anghami_plays_Total} percentageStatus='inc' />
+                                                    <CountCard title='Followers' percentage='8' value={item.Anghami_followers_Total} percentageStatus='inc' />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <CountCard title='Favourites' percentage='8' value={item.Gaana_favorites_Total} percentageStatus='dec' />
+                                            </td>
+                                            <td>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    gap: '1rem'
+                                                }}>
 
-                                                <CountCard title='Listeners' percentage='8' value={item.Jiosaavn_listeners_Total} percentageStatus='dec' />
-                                                <CountCard title='Followers' percentage='8' value={item.Jiosaavn_followers_Total} percentageStatus='dec' />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <CountCard title='Followers' percentage='8' value={item.Triller_followers_Total} percentageStatus='inc' />
-                                        </td>
-                                        <td>
-                                            <CountCard title='Favourites' percentage='8' value={item.Boomplay_favorites_Total} percentageStatus='dec' />
-                                        </td>
+                                                    <CountCard title='Listeners' percentage='8' value={item.Jiosaavn_listeners_Total} percentageStatus='dec' />
+                                                    <CountCard title='Followers' percentage='8' value={item.Jiosaavn_followers_Total} percentageStatus='dec' />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <CountCard title='Followers' percentage='8' value={item.Triller_followers_Total} percentageStatus='inc' />
+                                            </td>
+                                            <td>
+                                                <CountCard title='Favourites' percentage='8' value={item.Boomplay_favorites_Total} percentageStatus='dec' />
+                                            </td>
 
 
-                                    </tr>
+                                        </tr>
 
+                                    )
+                                }
                                 )
-                            }
-                            )
 
                         }
                     </table>
