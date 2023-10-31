@@ -132,28 +132,24 @@ const Register = () => {
     }
 
     return (
-        <div style={{ border: "1px solid red" }}>
-            <p className='register-heading'>
+        <div className='auth-form'>
+            <p className='auth-header'>
                 Create an Account
             </p>
             <div style={{ maxHeight: "35rem" }}>
                 {
                     accountCreated &&
                     <>
-                        <p style={{ color: "green" }}>Account Created</p>
-                        <div style={{ marginTop: "2rem" }}>
-                            <button
-                                style={{
-                                    width: "100%",
-                                    height: "3rem",
-                                    background: "green",
-                                    color: "yellow"
-                                }}
-                                onClick={handleSignInClick}
-                            >
-                                Sign In
-                            </button>
-                        </div>
+                        <p className='register-success-heading'>Account Created</p>
+                        <button
+                            className='large-primary-btn'
+                            style={{
+                                width: "100%",
+                            }}
+                            onClick={handleSignInClick}
+                        >
+                            Sign In
+                        </button>
                     </>
                 }
                 {
@@ -167,6 +163,7 @@ const Register = () => {
                                         {item.title}
                                     </p>
                                     <input
+                                        className='input-main'
                                         autoComplete={item.type === "password" ? "off" : "on"}
                                         type={item.type}
                                         defaultValue={item?.value}
@@ -174,9 +171,9 @@ const Register = () => {
                                         name={item.name}
                                         placeholder={item.placeholder}
                                     />
-                                    <div style={{ minHeight: "1rem" }}>
+                                    <div className='error-container'>
                                         {item.error &&
-                                            <p style={{ fontSize: "0.5rem", paddingTop: "0.25rem", margin: 0, color: "red" }}>Required field!</p>
+                                            <p className='error-text required-error-text-space'>Required field!</p>
 
                                         }
                                     </div>
@@ -184,45 +181,32 @@ const Register = () => {
                             )
                         })}
 
-                        <div style={{ minHeight: "1rem" }}>
+                        <div className='error-container'>
                             {incorrectPassword &&
-                                <p style={{ fontSize: "0.75rem", color: "red" }}>Password doesn't match</p>
+                                <p className='error-text'>Password doesn't match</p>
 
                             }
                         </div>
 
-                        <div style={{ display: "flex", flexDirection: 'column' }} >
-                            <div style={{ marginTop: "2rem" }}>
-                                <button
-                                    type="submit"
-                                    style={{
-                                        width: "100%",
-                                        height: "3rem",
-                                        background: "green",
-                                        color: "yellow"
-                                    }}
-                                >
-                                    {/* <p style={{ fontSize: "1.0625rem" }}> */}
-                                    Sign Up
-                                    {/* </p> */}
-                                </button>
-                            </div>
-                            <div style={{ marginTop: "2rem" }}>
-                                <button
-                                    style={{
-                                        width: "100%",
-                                        height: "3rem",
-                                        background: "green",
-                                        color: "yellow"
-                                    }}
-                                    onClick={handleSignInClick}
-                                >
-                                    {/* <p style={{ fontSize: "1.0625rem" }}> */}
-                                    Sign In
-                                    {/* </p> */}
-                                </button>
-                            </div>
-                        </div>
+                        <button
+                            type="submit"
+                            className='large-primary-btn'
+                            style={{
+                                width: "100%",
+                                marginBottom: "2rem"
+                            }}
+                        >
+                            Sign Up
+                        </button>
+                        <button
+                            className='large-secondary-btn'
+                            style={{
+                                width: "100%",
+                            }}
+                            onClick={handleSignInClick}
+                        >
+                            Sign In
+                        </button>
                     </form>
                 }
             </div>
