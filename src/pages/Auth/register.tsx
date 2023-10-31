@@ -132,7 +132,7 @@ const Register = () => {
     }
 
     return (
-        <div>
+        <div className='auth-form'>
             <p className='auth-header'>
                 Create an Account
             </p>

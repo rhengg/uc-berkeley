@@ -43,7 +43,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className='auth-form'>
             <form onSubmit={handleLoginApiCall}>
                 <p className='auth-header'>
                     Sign in
