@@ -170,10 +170,19 @@
 * {
   padding: 0;
   margin: 0;
-  background: white;
   font-family: 'Satoshi-Regular';
   line-height: 1.225rem;
 }
+
+.primary{ color: #45474B;}
+.black{ color: #000000;}
+.white{ color: #FFFFFF;}
+.surface{ color: #F9F9F9;}
+.stroke{ color: #F0F0F0;}
+.disabled{ color: #C5C5C5;}
+.placeholder{ color: #828282;}
+.positive{ color: #20AC25;}
+.negative{ color: #D4491D;}
 
 .heading {
   font-size: 2rem;
@@ -265,31 +274,31 @@
 .card-container {
   display: flex;
   justify-content: space-between;
-  width: 30rem;
-  height: 12rem;
+  width: 26rem;
+  height: 8rem;
   padding: 1rem;
   gap: 1rem;
-  border: 1px solid red;
   border-radius: 0.25rem;
+  background: var(--white);
 }
 
 .image-holder {
-  width: 20%;
+  width: 30%;
 }
 
 .details-holder {
-  width: 60%;
+  width: 50%;
 }
 
 .card-icon-holder {
-  width: 10%;
+  width: 20%;
 }
 
 .tag {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.125rem;
+  padding: 0.5rem;
   min-width: 4.5rem;
   background: var(--stroke);
   border-radius: 0.25rem;
@@ -320,19 +329,19 @@
 }
 
 .count-card-container {
-  width: 18rem;
-  height: 7.5rem;
+  width: 10rem;
+  height: 3.5rem;
   padding: 1rem;
-  border: 1px solid red;
   border-radius: 0.25rem;
+  background: var(--white);
 }
 
 .count-card-up {
   width: 100%;
-  height: 30%;
+  height: 40%;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: red;
+  border-bottom-color: var(--stroke);
 }
 
 .count-card-down {
@@ -340,7 +349,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 70%;
+  height: 60%;
 }
 
 
@@ -425,11 +434,15 @@ table {
 }
 
 th, td {
-  text-align: left;
   padding: 1rem;
-  border: 1px solid black;
+  border: 1px solid var(--stroke);
 }
 
 th{
   height: 4rem;
+  font-size: 1.2rem;
+}
+
+td{
+  background: var(--surface);
 }
