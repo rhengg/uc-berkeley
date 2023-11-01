@@ -119,7 +119,7 @@ const Index = () => {
                                             <tbody>
                                                 <tr>
                                                     <td>#1</td>
-                                                    <td>{filteredData[`${item}_followers_total`]}</td>
+                                                    <td>{filteredData[`${item}_followers_total`] ? filteredData[`${item}_followers_total`] : 0}</td>
                                                     <td>
                                                         <div style={{ display: "flex", alignItems: "center" }}>
                                                             <p style={{ color: "green" }}>8% </p>
