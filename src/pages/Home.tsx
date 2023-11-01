@@ -149,9 +149,12 @@ const Home = () => {
                     <div style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        alignItems: 'center',
+                        alignItems: 'start',
+                        height: 'calc(100vh - 220px)',
+                        padding: '1rem',
+                        background: '#f9f9f9',
                     }}>
-                        <div style={{ padding: '1rem', background: '#f9f9f9' }}>
+                        <div style={{ padding: '1rem', background: '#ffffff' }}>
                             <p className='subtitle-two' >No Artist Found</p>
                         </div>
                     </div>
