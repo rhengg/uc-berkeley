@@ -1,9 +1,20 @@
 import { MdArrowUpward } from 'react-icons/md'
+import data from '../../database/Soundcharts.json'
+import React from 'react';
 
 const Index = () => {
     const arr = Array(8).fill(0)
-    console.log("arr", arr);
+    const params = new URLSearchParams(window.location.search);
+    const artist = params.get("artist")
+    const [filteredData, setFilteredData] = React.useState<any>()
+    const [genreList, setGenreList] = React.useState<any>()
 
+    React.useEffect(() => {
+        const newData = data?.filter((val) => val.artist === artist)
+        const list = newData[0].artist_genres.split(",")
+        setFilteredData(newData[0])
+        setGenreList(list)
+    }, [artist])
 
     return (
         <div className='detail-main'>
@@ -18,28 +29,26 @@ const Index = () => {
 
                         <div className="card-detail-container">
                             <div className='card-detail-header'>
-                                <p style={{ fontSize: "2rem" }} >Arijit Singh</p>
+                                <p style={{ fontSize: "2rem" }} >{filteredData?.artist}</p>
                             </div>
 
                             <div className='card-detail-tag-main'>
                                 <p className='label'>Country</p>
                                 <div className="tag">
-                                    <p className="body">Indian</p>
+                                    <p className="body">{filteredData?.artist_country}</p>
                                 </div>
                             </div>
 
                             <div className="card-detail-tag-main">
                                 <p className='label'>Genre</p>
                                 <div className='card-detail-tag-container '>
-                                    <div className="tag">
-                                        <p className="body">Pop</p>
-                                    </div>
-                                    <div className="tag">
-                                        <p className="body">Asian</p>
-                                    </div>
-                                    <div className="tag">
-                                        <p className="body">Others</p>
-                                    </div>
+                                    {genreList?.map((genre: string, index: number) => {
+                                        return (
+                                            <div key={index} className="tag">
+                                                <p className="body">{genre}</p>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>

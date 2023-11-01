@@ -11,7 +11,7 @@ const Home = () => {
     const [searchTitle, setSearchTitle] = React.useState("");
 
     const handleCardClick = (id: string) => {
-        navigate({ pathname: "/detail", search: id })
+        navigate({ pathname: "/detail", search: `?artist=${id}` })
     }
 
     return (
@@ -66,7 +66,7 @@ const Home = () => {
                                     return (
                                         <tr>
                                             <td>
-                                                <Card name={item.artist} origin={item.artist_country} id={"2"} handleCardClick={handleCardClick} />
+                                                <Card name={item.artist} origin={item.artist_country} id={item.artist} handleCardClick={handleCardClick} />
                                             </td>
                                             <td>
                                                 <div style={{
