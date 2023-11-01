@@ -6,7 +6,6 @@ import data from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-    console.log('data', data)
     const navigate = useNavigate()
     const [searchTitle, setSearchTitle] = React.useState("");
 

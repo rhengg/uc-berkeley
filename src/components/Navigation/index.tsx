@@ -1,6 +1,12 @@
 import React from "react";
+import Cookies from 'js-cookie';
+
 
 const Navigation = () => {
+	const handleSignOut = () => {
+		Cookies.remove("testUserAuthenticated");
+		window.location.replace("/login")
+	}
 	return (
 		<div className="nav-main">
 			<div className="nav-container">
@@ -20,7 +26,7 @@ const Navigation = () => {
 						<p className="subtitle-two">John Doe</p>
 					</div>
 					<div>
-						<button className="large-secondary-btn"> Sign Out </button>
+						<button className="large-secondary-btn" onClick={handleSignOut}> Sign Out </button>
 					</div>
 				</div>
 			</div>

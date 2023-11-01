@@ -8,13 +8,31 @@ const Index = () => {
     const artist = params.get("artist")
     const [filteredData, setFilteredData] = React.useState<any>()
     const [genreList, setGenreList] = React.useState<any>()
+    const [platformList, setPlatformList] = React.useState<any>()
 
     React.useEffect(() => {
         const newData = data?.filter((val) => val.artist === artist)
         const list = newData[0].artist_genres.split(",")
         setFilteredData(newData[0])
         setGenreList(list)
+        console.log("newData", newData[0])
     }, [artist])
+
+
+    React.useEffect(() => {
+        if (filteredData) {
+            let arr: string[] = []
+            const length = Object.keys(filteredData).length
+            for (let index = 0; index < length; index++) {
+                const firstElement = Object.keys(filteredData)[index].split("_")[0];
+                arr.push(firstElement)
+            }
+            const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
+            const firstfilter = newArr.filter((item, index) => item !== "artist")
+            const finalfilter = firstfilter.filter((item, index) => item !== "Err")
+            setPlatformList(finalfilter)
+        }
+    }, [filteredData])
 
     return (
         <div className='detail-main'>
@@ -75,12 +93,12 @@ const Index = () => {
                             <p className='label'>Performance</p>
                         </div>
                         <div className='detail-performance-box'>
-                            {arr.map((item, index) => {
+                            {platformList?.map((item: string, index: number) => {
                                 return (
-                                    <div className='performance-card'>
+                                    <div key={index} className='performance-card'>
                                         <div className='table-header-with-icon'>
                                             <div style={{ width: "24px", height: "24px", background: "grey" }}></div>
-                                            <p>Spotify</p>
+                                            <p>{item}</p>
                                         </div>
                                         <table key={index} className='performance-table-data'>
                                             <thead>
@@ -88,22 +106,40 @@ const Index = () => {
                                                     <th>Rank</th>
                                                     <th>Followers</th>
                                                     <th></th>
-                                                    <th>Monthly Listeners</th>
-                                                    <th></th>
+                                                    {filteredData[`${item}_monthly_listeners_total`] ?
+                                                        <th>Monthly Listeners</th>
+                                                        : <></>
+                                                    }
+                                                    {filteredData[`${item}_monthly_listeners_total`] ?
+                                                        <th></th>
+                                                        : <></>
+                                                    }
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>#1</td>
-                                                    <td>190000</td>
+                                                    <td>{filteredData[`${item}_followers_total`] ? filteredData[`${item}_followers_total`] : 0}</td>
                                                     <td>
                                                         <div style={{ display: "flex", alignItems: "center" }}>
                                                             <p style={{ color: "green" }}>8% </p>
                                                             <MdArrowUpward style={{ color: "green" }} size={18} />
                                                         </div>
                                                     </td>
-                                                    <td>190000</td>
-                                                    <td>8%</td>
+                                                    <td>{filteredData[`${item}_monthly_listeners_total`]}</td>
+                                                    {filteredData[`${item}_monthly_listeners_change_prc`]
+                                                        ?
+                                                        <td>
+                                                            <div style={{ display: "flex", alignItems: "center" }}>
+                                                                <p style={{ color: "green" }}>
+                                                                    {filteredData[`${item}_monthly_listeners_change_prc`]}%
+                                                                </p>
+                                                                <MdArrowUpward style={{ color: "green" }} size={18} />
+                                                            </div>
+                                                        </td>
+                                                        :
+                                                        <td></td>
+                                                    }
                                                 </tr>
                                             </tbody>
                                         </table>

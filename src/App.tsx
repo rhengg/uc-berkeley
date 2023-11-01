@@ -14,8 +14,6 @@ const App = () => {
 
   const isUserAuthenticated = () => {
     const cookie = Cookies.get('testUserAuthenticated');
-    console.log("cookies found", cookie);
-
     if (cookie) {
       return true
     } else {
