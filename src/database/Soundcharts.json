@@ -1,6 +1,7 @@
 [
  {
    "artist": "Arijit Singh",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Others, Asian",
    "artist_uuid": "11e81bc8-bd7d-804e-b8b2-a0369fe50396",
@@ -62,6 +63,7 @@
  },
  {
    "artist": "Neha Kakkar",
+   "gender": "female",
    "artist_country": "India",
    "artist_genres": "Pop, Asian",
    "artist_uuid": "11e81bc6-f414-7c7c-871b-a0369fe50396",
@@ -123,6 +125,7 @@
  },
  {
    "artist": "A.R. Rahman",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Asian",
    "artist_uuid": "11e81bba-78a7-33ec-a1eb-a0369fe50396",
@@ -184,6 +187,7 @@
  },
  {
    "artist": "Badshah",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Asian",
    "artist_uuid": "11e81bbd-6381-fa62-9e45-a0369fe50396",
@@ -245,6 +249,7 @@
  },
  {
    "artist": "Sidhu Moose Wala",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Hip Hop, Pop",
    "artist_uuid": "11e81bcb-4db1-e50e-9493-a0369fe50396",
@@ -306,6 +311,7 @@
  },
  {
    "artist": "Anirudh Ravichander",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Hip Hop, Asian, Pop",
    "artist_uuid": "11e81bbc-f344-2f22-bb7b-a0369fe50396",
@@ -367,6 +373,7 @@
  },
  {
    "artist": "Pritam",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian, Instrumental",
    "artist_uuid": "11e81bc0-59c7-f79e-9a97-a0369fe50396",
@@ -428,7 +435,8 @@
  },
  {
    "artist": "Shreya Ghoshal",
-   "artist_country": "Pakistan",
+   "gender": "female",
+   "artist_country": "India",
    "artist_genres": "Pop, Asian, Mena",
    "artist_uuid": "11e81bce-3742-b638-9592-a0369fe50396",
    "artist_url": "https://app.soundcharts.com/app/artist/shreya-ghoshal/overview",
@@ -489,6 +497,7 @@
  },
  {
    "artist": "Armaan Malik",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian",
    "artist_uuid": "11e81bc8-a976-b5ca-abd2-a0369fe50396",
@@ -550,6 +559,7 @@
  },
  {
    "artist": "Diljit Dosanjh",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian, Mena",
    "artist_uuid": "11e81bca-38ff-7438-a271-a0369fe50396",
@@ -611,6 +621,7 @@
  },
  {
    "artist": "Atif Aslam",
+   "gender": "male",
    "artist_country": "Pakistan",
    "artist_genres": "Pop, Asian, Mena",
    "artist_uuid": "11e81bc8-a375-c2a6-aebf-a0369fe50396",
@@ -672,6 +683,7 @@
  },
  {
    "artist": "Rahat Fateh Ali Khan",
+   "gender": "male",
    "artist_country": "Pakistan",
    "artist_genres": "Others, Asian, Mena, Pop",
    "artist_uuid": "11e81bc1-315d-9d94-995c-a0369fe50396",
@@ -733,6 +745,7 @@
  },
  {
    "artist": "Guru Randhawa",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian",
    "artist_uuid": "11e81bbb-6c23-87e6-8dc2-a0369fe50396",
@@ -794,6 +807,7 @@
  },
  {
    "artist": "Sunidhi Chauhan",
+   "gender": "female",
    "artist_country": "India",
    "artist_genres": "Pop, Asian, Mena",
    "artist_uuid": "11e81bbb-9161-3792-8815-a0369fe50396",
@@ -855,6 +869,7 @@
  },
  {
    "artist": "Sonu Nigam",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian, Mena, Soundtrack",
    "artist_uuid": "11e81bc1-f0a5-8d4c-a7a8-a0369fe50396",
@@ -916,6 +931,7 @@
  },
  {
    "artist": "KK",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian, Mena",
    "artist_uuid": "11e81bc6-b6c5-32e4-878b-a0369fe50396",
@@ -977,6 +993,7 @@
  },
  {
    "artist": "Ankit Tiwari",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian, Mena",
    "artist_uuid": "11e81bc1-4a5c-5b0a-8e75-a0369fe50396",
@@ -1038,6 +1055,7 @@
  },
  {
    "artist": "Jubin Nautiyal",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian",
    "artist_uuid": "11e81bc1-c27d-e892-a8c1-a0369fe50396",
@@ -1099,6 +1117,7 @@
  },
  {
    "artist": "Yo Yo Honey Singh",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Hip Hop, Others, Asian, Mena",
    "artist_uuid": "11e81bd3-12c0-5716-9a88-a0369fe50396",
@@ -1160,6 +1179,7 @@
  },
  {
    "artist": "Darshan Raval",
+   "gender": "male",
    "artist_country": "India",
    "artist_genres": "Pop, Asian",
    "artist_uuid": "11e81bcd-e62c-697e-be9b-a0369fe50396",
