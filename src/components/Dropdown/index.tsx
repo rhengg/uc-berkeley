@@ -5,14 +5,15 @@ type DropdownPropTypes = {
     options: string[],
     placeholder?: string,
     selectedValue: (val: string) => void
+    id?: string
 }
 
-export default function Index({ options, placeholder, selectedValue }: DropdownPropTypes) {
+export default function Index({ id, options, placeholder, selectedValue }: DropdownPropTypes) {
     const [openDropdown, setOpenDropdown] = React.useState(false)
 
     const handleDropdownClick = () => {
         setOpenDropdown(!openDropdown);
-        const div = document.getElementById("dropdown-options-container") as HTMLElement
+        const div = document.getElementById(`dropdown-options-container_${id ? id : ""}`) as HTMLElement
         if (openDropdown) {
             div.style.opacity = "-1"
             div.style.zIndex = "-100"
@@ -41,7 +42,7 @@ export default function Index({ options, placeholder, selectedValue }: DropdownP
                 </div>
             </div>
             <div
-                id="dropdown-options-container"
+                id={`dropdown-options-container_${id ? id : ""}`}
                 className='dropdown-options-container'
                 style={{
                     opacity: -1,

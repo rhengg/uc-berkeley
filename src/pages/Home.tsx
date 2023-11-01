@@ -2,29 +2,71 @@ import React from 'react'
 import Card from '../components/Card'
 import CountCard from '../components/CountCard'
 import Dropdown from '../components/Dropdown'
-import data from '../database/Soundcharts.json'
+import soundChartsData from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const navigate = useNavigate()
     const [searchTitle, setSearchTitle] = React.useState("");
-    const [dropdownOption, setDropdownOption] = React.useState<string>()
+    const [selectedPlatform, setSelectedPlatform] = React.useState<string>()
+    const [selectedGender, setSelectedGender] = React.useState<string>()
+    const [selectedCountry, setSelectedCountry] = React.useState<string>()
+    const [platformList, setPlatformList] = React.useState<string[]>([])
+    const [countryList, setCountryList] = React.useState<string[]>([])
+    const [data, setData] = React.useState<any>(soundChartsData)
 
     const handleCardClick = (id: string) => {
         navigate({ pathname: "/detail", search: `?artist=${id}` })
     }
 
-    React.useEffect(() => {
-        console.log("dropdownoption", dropdownOption);
-    }, [dropdownOption])
+    const filteredByGender = (val: string) => {
+        const newData = soundChartsData.map((item: any) => item.gender === val)
+        return newData
+    }
 
-    const filtereddata = data.filter((value) => {
+    const filteredByCountry = (val: string) => {
+        const newData = soundChartsData.filter((item: any) => item.artist_country === val)
+        return newData
+    }
+
+    React.useEffect(() => {
+        if (selectedCountry) {
+            const sc = filteredByCountry(selectedCountry)
+            setData(sc)
+        } else if (selectedGender) {
+            const sg = filteredByGender(selectedGender)
+            setData(sg)
+        }
+    }, [selectedCountry, selectedGender])
+
+    const filtereddata = data.filter((value: any) => {
         if (searchTitle === "") {
             return value;
         } else if (value.artist.toLowerCase().includes(searchTitle.toLowerCase())) {
             return value;
         }
     })
+
+    const getPlatformList = (obj: any) => {
+        let arr: string[] = []
+        const length = Object.keys(obj).length
+        for (let index = 0; index < length; index++) {
+            const firstElement = Object.keys(obj)[index].split("_")[0];
+            arr.push(firstElement)
+        }
+        const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
+        const firstfilter = newArr.filter((item, index) => item !== "artist")
+        const finalfilter = firstfilter.filter((item, index) => item !== "Err")
+        return finalfilter
+    }
+
+    React.useEffect(() => {
+        const arrCountry = soundChartsData.map((item: any) => {
+            return item.artist_country
+        })
+        setCountryList(arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index));
+        setPlatformList(getPlatformList(soundChartsData[0]))
+    }, [soundChartsData])
 
     return (
         <div style={{ padding: '0rem 4rem' }}>
@@ -33,8 +75,7 @@ const Home = () => {
                 padding: '1.5rem 0',
                 display: "flex",
                 alignItems: "center",
-                gap: "1rem",
-                border: "1px solid red"
+                gap: "4rem",
             }} >
                 <input
                     className='input-main'
@@ -44,8 +85,14 @@ const Home = () => {
                     value={searchTitle}
                     onChange={(e) => setSearchTitle(e.target.value)}
                 />
-                <div style={{ height: "100%" }}>
-                    <Dropdown options={["Option A", "Option B", "Option C"]} selectedValue={setDropdownOption} />
+                <div style={{ height: "100%", display: "flex", alignItems: "center", gap: "1rem" }}>
+                    <p>Filter </p>
+                    <Dropdown id={"dropdown1"} options={platformList}
+                        selectedValue={setSelectedPlatform} placeholder='By Platform' />
+                    <Dropdown id={"dropdown2"} options={["Male", "Female",]}
+                        selectedValue={setSelectedGender} placeholder='By Gender' />
+                    <Dropdown id={"dropdown3"} options={countryList}
+                        selectedValue={setSelectedCountry} placeholder='By Country' />
                 </div>
 
             </div>
