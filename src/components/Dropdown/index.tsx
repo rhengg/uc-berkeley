@@ -52,7 +52,7 @@ export default function Index({ id, value, options, placeholder, selectedValue }
             >
                 <p
                     style={{ margin: "0.5rem 0", cursor: "pointer" }}
-                    onClick={() => selectedValue("")}
+                    onClick={() => { selectedValue(""); handleDropdownClick(); }}
                 >
                     All
                 </p>
@@ -61,7 +61,7 @@ export default function Index({ id, value, options, placeholder, selectedValue }
                         <p
                             key={index}
                             style={{ margin: "0.5rem 0", cursor: "pointer" }}
-                            onClick={() => selectedValue(item)}
+                            onClick={() => { selectedValue(item); handleDropdownClick(); }}
                         >
                             {item}
                         </p>
