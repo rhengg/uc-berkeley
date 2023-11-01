@@ -323,15 +323,27 @@
 }
 
 .image-holder {
-  width: 30%;
+  width: 25%;
 }
 
 .details-holder {
-  width: 50%;
+  width: 65%;
 }
 
 .card-icon-holder {
-  width: 20%;
+  width: 10%;
+}
+
+.hide-scroll {
+  -ms-overflow-style: none;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scroll ::-moz-scrollbar {
+  display: none;
 }
 
 .tag {
@@ -346,10 +358,10 @@
 
 .tag-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 0.2rem;
   margin-top: 1rem;
+  overflow-x: scroll;
 }
 
 .icon {
