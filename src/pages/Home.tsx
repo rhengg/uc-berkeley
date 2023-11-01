@@ -1,7 +1,6 @@
 import React from 'react'
 import Card from '../components/Card'
 import CountCard from '../components/CountCard'
-import Navigation from '../components/Navigation'
 import data from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
 
@@ -15,7 +14,6 @@ const Home = () => {
 
     return (
         <div style={{ padding: '0rem 4rem' }}>
-            {/* <Navigation /> */}
 
             <div style={{ padding: '1.5rem 0' }} >
 
@@ -31,7 +29,10 @@ const Home = () => {
             </div>
 
             <div >
-                <div style={{ overflowX: "auto", height: '800px' }}>
+                <div style={{
+                    overflowX: "auto",
+                    height: 'calc(100vh - 180px)'
+                }}>
                     <table className='home-table'>
                         <tr>
                             <th>Artist</th>
@@ -83,13 +84,11 @@ const Home = () => {
                                                         title='Followers'
                                                         percentage={item.spotify_followers_change_prc}
                                                         value={item.spotify_followers_total}
-                                                        percentageStatus='inc'
                                                     />
                                                     <CountCard
                                                         title='Monthly listeners'
                                                         percentage={item.spotify_monthly_listeners_Change_prc}
                                                         value={item.spotify_monthly_listeners_total}
-                                                        percentageStatus='inc'
                                                     />
                                                 </div>
                                             </td>
@@ -104,13 +103,11 @@ const Home = () => {
                                                         title='Subscribers'
                                                         percentage={item.YouTube_subscribers_change_prc}
                                                         value={item.YouTube_subscribers_change}
-                                                        percentageStatus='inc'
                                                     />
                                                     <CountCard
                                                         title='Views'
                                                         percentage={item.YouTube_views_change_prc}
                                                         value={item.YouTube_views_total}
-                                                        percentageStatus='inc'
                                                     />
                                                 </div>
                                             </td>
@@ -124,7 +121,6 @@ const Home = () => {
                                                         title='Followers'
                                                         percentage={item.Instagram_followers_change_prc}
                                                         value={item.Instagram_followers_total}
-                                                        percentageStatus='inc'
                                                     />
                                                 </div>
                                             </td>
@@ -133,7 +129,6 @@ const Home = () => {
                                                     title='Followers'
                                                     percentage={item.TikTok_followers_change_prc}
                                                     value={item.TikTok_followers_total}
-                                                    percentageStatus='dec'
                                                 />
                                             </td>
                                             <td>
@@ -141,7 +136,6 @@ const Home = () => {
                                                     title='Followers'
                                                     percentage={item.Deezer_fans_change_prc}
                                                     value={item.Deezer_fans_total}
-                                                    percentageStatus='dec'
                                                 />
                                             </td>
                                             <td>
@@ -149,7 +143,6 @@ const Home = () => {
                                                     title='Followers'
                                                     percentage={item.Facebook_fans_change_prc}
                                                     value={item.Facebook_fans_total}
-                                                    percentageStatus='dec'
                                                 />
                                             </td>
                                             <td>
@@ -157,14 +150,13 @@ const Home = () => {
                                                     title='Followers'
                                                     percentage={item.Soundcloud_followers_change_prc}
                                                     value={item.Soundcloud_followers_total}
-                                                    percentageStatus='inc' />
+                                                />
                                             </td>
                                             <td>
                                                 <CountCard
                                                     title='Followers'
                                                     percentage={item.Line_music_followers_change_prc}
                                                     value={item.Line_music_followers_total}
-                                                    percentageStatus='inc'
                                                 />
                                             </td>
                                             <td>
@@ -177,13 +169,11 @@ const Home = () => {
                                                         title='Listeners'
                                                         percentage={item.Anghami_plays_change_prc}
                                                         value={item.Anghami_plays_total}
-                                                        percentageStatus='inc'
                                                     />
                                                     <CountCard
                                                         title='Followers'
                                                         percentage={item.Anghami_followers_change_prc}
                                                         value={item.Anghami_followers_total}
-                                                        percentageStatus='inc'
                                                     />
                                                 </div>
                                             </td>
@@ -192,7 +182,6 @@ const Home = () => {
                                                     title='Favourites'
                                                     percentage={item.Gaana_favorites_change_prc}
                                                     value={item.Gaana_favorites_total}
-                                                    percentageStatus='dec'
                                                 />
                                             </td>
                                             <td>
@@ -206,13 +195,11 @@ const Home = () => {
                                                         title='Listeners'
                                                         percentage={item.Jiosaavn_listeners_change_prc}
                                                         value={item.Jiosaavn_listeners_total}
-                                                        percentageStatus='dec'
                                                     />
                                                     <CountCard
                                                         title='Followers'
                                                         percentage={item.Jiosaavn_followers_change_prc}
                                                         value={item.Jiosaavn_followers_total}
-                                                        percentageStatus='dec'
                                                     />
                                                 </div>
                                             </td>
@@ -221,7 +208,6 @@ const Home = () => {
                                                     title='Followers'
                                                     percentage={item.Triller_followers_change_prc}
                                                     value={item.Triller_followers_total}
-                                                    percentageStatus='inc'
                                                 />
                                             </td>
                                             <td>
@@ -229,7 +215,6 @@ const Home = () => {
                                                     title='Favourites'
                                                     percentage='8'
                                                     value={item.Boomplay_favorites_total}
-                                                    percentageStatus='dec'
                                                 />
                                             </td>
 

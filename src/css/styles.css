@@ -178,6 +178,29 @@
   margin: 0;
   font-family: 'Satoshi-Regular';
   line-height: 1.225rem;
+  scrollbar-color: var(--primary) var(--surface);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }
 
 .primary {
