@@ -1,18 +1,77 @@
 import React from 'react'
 import Card from '../components/Card'
 import CountCard from '../components/CountCard'
-import data from '../database/Soundcharts.json'
+import Dropdown from '../components/Dropdown'
+import soundChartsData from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const navigate = useNavigate()
     const [searchTitle, setSearchTitle] = React.useState("");
+    const [selectedPlatform, setSelectedPlatform] = React.useState<string>()
+    const [selectedGender, setSelectedGender] = React.useState<string>()
+    const [selectedCountry, setSelectedCountry] = React.useState<any>(
+        //     () => {
+        //     const arrCountry = soundChartsData.map((item: any) => {
+        //         return item.artist_country
+        //     })
+        //     return (arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index)[0]);
+        // }
+    )
+    const [platformList, setPlatformList] = React.useState<string[]>([])
+    const [countryList, setCountryList] = React.useState<string[]>([])
+    const [data, setData] = React.useState<any>(soundChartsData)
 
     const handleCardClick = (id: string) => {
         navigate({ pathname: "/detail", search: `?artist=${id}` })
     }
 
-    const filtereddata = data.filter((value) => {
+    // const filteredByGender = (val: string) => {
+    //     const newData = soundChartsData.filter((item: any) => item.gender === val)
+    //     return newData
+    // }
+
+    // const filteredByCountry = (val: string) => {
+    //     const newData = soundChartsData.filter((item: any) => item.artist_country === val)
+    //     return newData
+    // }
+
+    // React.useEffect(() => {
+    //     if (selectedCountry) {
+    //         const sc = filteredByCountry(selectedCountry)
+    //         setData(sc)
+    //     } else if (selectedGender) {
+    //         const sg = filteredByGender(selectedGender.toLowerCase())
+    //         setData(sg)
+    //     }
+    // }, [selectedCountry, selectedGender])
+
+    const getFileteredData = (country: string, gender: string) => {
+        let final = soundChartsData
+        if (country) {
+            final = final.filter((item: any) => item.artist_country === country)
+        }
+        if (gender) {
+            final = final.filter((item: any) => item.gender === gender)
+        }
+        console.log("sss", final);
+
+        return final
+    }
+
+
+
+    React.useEffect(() => {
+        setData(getFileteredData(selectedCountry as string, selectedGender as string))
+    }, [selectedCountry, selectedGender])
+
+
+    // React.useEffect(() => {
+    //     console.log("data", data);
+
+    // }, [data])
+
+    const filtereddata = data.filter((value: any) => {
         if (searchTitle === "") {
             return value;
         } else if (value.artist.toLowerCase().includes(searchTitle.toLowerCase())) {
@@ -20,11 +79,36 @@ const Home = () => {
         }
     })
 
+    const getPlatformList = (obj: any) => {
+        let arr: string[] = []
+        const length = Object.keys(obj).length
+        for (let index = 0; index < length; index++) {
+            const firstElement = Object.keys(obj)[index].split("_")[0];
+            arr.push(firstElement)
+        }
+        const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
+        const firstfilter = newArr.filter((item, index) => item !== "artist")
+        const finalfilter = firstfilter.filter((item, index) => item !== "Err")
+        return finalfilter
+    }
+
+    React.useEffect(() => {
+        const arrCountry = soundChartsData.map((item: any) => {
+            return item.artist_country
+        })
+        setCountryList(arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index));
+        setPlatformList(getPlatformList(soundChartsData[0]))
+    }, [soundChartsData])
+
     return (
         <div style={{ padding: '0rem 4rem' }}>
 
-            <div style={{ padding: '1.5rem 0' }} >
-
+            <div style={{
+                padding: '1.5rem 0',
+                display: "flex",
+                alignItems: "center",
+                gap: "4rem",
+            }} >
                 <input
                     className='input-main'
                     type={'text'}
@@ -33,6 +117,30 @@ const Home = () => {
                     value={searchTitle}
                     onChange={(e) => setSearchTitle(e.target.value)}
                 />
+                <div style={{ height: "100%", display: "flex", alignItems: "center", gap: "1rem" }}>
+                    <p>Filter </p>
+                    <Dropdown
+                        id={"dropdown1"}
+                        value={selectedPlatform}
+                        options={platformList}
+                        selectedValue={setSelectedPlatform}
+                        placeholder='By Platform'
+                    />
+                    <Dropdown
+                        id={"dropdown2"}
+                        value={selectedGender}
+                        options={["male", "female",]}
+                        selectedValue={setSelectedGender}
+                        placeholder='By Gender'
+                    />
+                    <Dropdown
+                        id={"dropdown3"}
+                        value={selectedCountry}
+                        options={countryList}
+                        selectedValue={setSelectedCountry}
+                        placeholder='By Country'
+                    />
+                </div>
 
             </div>
 

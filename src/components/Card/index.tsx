@@ -22,7 +22,7 @@ const Card = (props: CardProps) => {
 				<img
 					style={{ width: '100%', aspectRatio: 1 / 1, borderRadius: '0.25rem' }}
 					src="/photo.png"
-					alt="Grapefruit slice atop a pile of other slices"
+					alt="no image"
 				/>
 
 			</div>
