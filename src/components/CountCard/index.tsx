@@ -6,12 +6,12 @@ type CountCardProps = {
 	title: string
 	value: string
 	percentage: string
-	percentageStatus?: 'inc' | 'dec'
 }
 
 const CountCard = (props: CountCardProps) => {
 
-	const { id, percentage, value, title, percentageStatus } = props
+	const { id, percentage, value, title } = props
+	const p = parseInt(percentage)
 
 	return (
 		<div className="count-card-container">
@@ -20,7 +20,7 @@ const CountCard = (props: CountCardProps) => {
 			</div>
 			<div className="count-card-down">
 				<div style={{ width: '60%' }}>
-					<p className="body"> {value} </p>
+					<p className="body"> {value ? value : 0} </p>
 				</div>
 
 				<div style={{
@@ -30,14 +30,14 @@ const CountCard = (props: CountCardProps) => {
 					width: '40%',
 				}}>
 					{
-						percentageStatus === 'inc' ?
+						p > 0 ?
 							<>
-								<p className="body positive">{percentage}% </p>
+								<p className="body positive">{percentage ? percentage : 0}% </p>
 								<MdArrowUpward className="positive" height={'48px'} />
 							</>
 							:
 							<>
-								<p className="body negative">{percentage}% </p>
+								<p className="body negative">{percentage ? percentage : 0}% </p>
 								<MdArrowDownward className="negative" height={'48px'} />
 							</>
 					}
