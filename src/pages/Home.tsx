@@ -1,24 +1,34 @@
 import React from 'react'
 import Card from '../components/Card'
 import CountCard from '../components/CountCard'
-import Navigation from '../components/Navigation'
+import Dropdown from '../components/Dropdown'
 import data from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const navigate = useNavigate()
     const [searchTitle, setSearchTitle] = React.useState("");
+    const [dropdownOption, setDropdownOption] = React.useState<string>()
 
     const handleCardClick = (id: string) => {
         navigate({ pathname: "/detail", search: `?artist=${id}` })
     }
 
+    React.useEffect(() => {
+        console.log("dropdownoption", dropdownOption);
+    }, [dropdownOption])
+
     return (
         <div style={{ padding: '0rem 4rem' }}>
             {/* <Navigation /> */}
 
-            <div style={{ padding: '1.5rem 0' }} >
-
+            <div style={{
+                padding: '1.5rem 0',
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                border: "1px solid red"
+            }} >
                 <input
                     className='input-main'
                     type={'text'}
@@ -27,6 +37,9 @@ const Home = () => {
                     value={searchTitle}
                     onChange={(e) => setSearchTitle(e.target.value)}
                 />
+                <div style={{ height: "100%" }}>
+                    <Dropdown options={["Option A", "Option B", "Option C"]} selectedValue={setDropdownOption} />
+                </div>
 
             </div>
 
