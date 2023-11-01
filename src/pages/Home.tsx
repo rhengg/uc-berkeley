@@ -10,7 +10,14 @@ const Home = () => {
     const [searchTitle, setSearchTitle] = React.useState("");
     const [selectedPlatform, setSelectedPlatform] = React.useState<string>()
     const [selectedGender, setSelectedGender] = React.useState<string>()
-    const [selectedCountry, setSelectedCountry] = React.useState<string>()
+    const [selectedCountry, setSelectedCountry] = React.useState<any>(
+        //     () => {
+        //     const arrCountry = soundChartsData.map((item: any) => {
+        //         return item.artist_country
+        //     })
+        //     return (arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index)[0]);
+        // }
+    )
     const [platformList, setPlatformList] = React.useState<string[]>([])
     const [countryList, setCountryList] = React.useState<string[]>([])
     const [data, setData] = React.useState<any>(soundChartsData)
@@ -19,25 +26,50 @@ const Home = () => {
         navigate({ pathname: "/detail", search: `?artist=${id}` })
     }
 
-    const filteredByGender = (val: string) => {
-        const newData = soundChartsData.map((item: any) => item.gender === val)
-        return newData
+    // const filteredByGender = (val: string) => {
+    //     const newData = soundChartsData.filter((item: any) => item.gender === val)
+    //     return newData
+    // }
+
+    // const filteredByCountry = (val: string) => {
+    //     const newData = soundChartsData.filter((item: any) => item.artist_country === val)
+    //     return newData
+    // }
+
+    // React.useEffect(() => {
+    //     if (selectedCountry) {
+    //         const sc = filteredByCountry(selectedCountry)
+    //         setData(sc)
+    //     } else if (selectedGender) {
+    //         const sg = filteredByGender(selectedGender.toLowerCase())
+    //         setData(sg)
+    //     }
+    // }, [selectedCountry, selectedGender])
+
+    const getFileteredData = (country: string, gender: string) => {
+        let final = soundChartsData
+        if (country) {
+            final = final.filter((item: any) => item.artist_country === country)
+        }
+        if (gender) {
+            final = final.filter((item: any) => item.gender === gender)
+        }
+        console.log("sss", final);
+
+        return final
     }
 
-    const filteredByCountry = (val: string) => {
-        const newData = soundChartsData.filter((item: any) => item.artist_country === val)
-        return newData
-    }
+
 
     React.useEffect(() => {
-        if (selectedCountry) {
-            const sc = filteredByCountry(selectedCountry)
-            setData(sc)
-        } else if (selectedGender) {
-            const sg = filteredByGender(selectedGender)
-            setData(sg)
-        }
+        setData(getFileteredData(selectedCountry as string, selectedGender as string))
     }, [selectedCountry, selectedGender])
+
+
+    // React.useEffect(() => {
+    //     console.log("data", data);
+
+    // }, [data])
 
     const filtereddata = data.filter((value: any) => {
         if (searchTitle === "") {
@@ -87,12 +119,27 @@ const Home = () => {
                 />
                 <div style={{ height: "100%", display: "flex", alignItems: "center", gap: "1rem" }}>
                     <p>Filter </p>
-                    <Dropdown id={"dropdown1"} options={platformList}
-                        selectedValue={setSelectedPlatform} placeholder='By Platform' />
-                    <Dropdown id={"dropdown2"} options={["Male", "Female",]}
-                        selectedValue={setSelectedGender} placeholder='By Gender' />
-                    <Dropdown id={"dropdown3"} options={countryList}
-                        selectedValue={setSelectedCountry} placeholder='By Country' />
+                    <Dropdown
+                        id={"dropdown1"}
+                        value={selectedPlatform}
+                        options={platformList}
+                        selectedValue={setSelectedPlatform}
+                        placeholder='By Platform'
+                    />
+                    <Dropdown
+                        id={"dropdown2"}
+                        value={selectedGender}
+                        options={["male", "female",]}
+                        selectedValue={setSelectedGender}
+                        placeholder='By Gender'
+                    />
+                    <Dropdown
+                        id={"dropdown3"}
+                        value={selectedCountry}
+                        options={countryList}
+                        selectedValue={setSelectedCountry}
+                        placeholder='By Country'
+                    />
                 </div>
 
             </div>

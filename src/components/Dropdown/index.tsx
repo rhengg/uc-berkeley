@@ -6,9 +6,10 @@ type DropdownPropTypes = {
     placeholder?: string,
     selectedValue: (val: string) => void
     id?: string
+    value?: string
 }
 
-export default function Index({ id, options, placeholder, selectedValue }: DropdownPropTypes) {
+export default function Index({ id, value, options, placeholder, selectedValue }: DropdownPropTypes) {
     const [openDropdown, setOpenDropdown] = React.useState(false)
 
     const handleDropdownClick = () => {
@@ -27,7 +28,7 @@ export default function Index({ id, options, placeholder, selectedValue }: Dropd
         <div className='dropdown-main'>
             <div className='dropdown-container'>
                 <div style={{ width: "80%" }}>
-                    {placeholder ? placeholder : "Select"}
+                    {value ? value.charAt(0).toUpperCase() + value.slice(1) : placeholder ? placeholder : "Select"}
                 </div>
                 <div className='dropdown-arrow-container'>
                     <div
@@ -49,6 +50,12 @@ export default function Index({ id, options, placeholder, selectedValue }: Dropd
                     zIndex: -100
                 }}
             >
+                <p
+                    style={{ margin: "0.5rem 0", cursor: "pointer" }}
+                    onClick={() => selectedValue("")}
+                >
+                    All
+                </p>
                 {options.map((item, index) => {
                     return (
                         <p
