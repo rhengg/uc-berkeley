@@ -15,7 +15,6 @@ const Index = () => {
         const list = newData[0].artist_genres.split(",")
         setFilteredData(newData[0])
         setGenreList(list)
-        console.log("newData", newData[0])
     }, [artist])
 
 
@@ -28,8 +27,8 @@ const Index = () => {
                 arr.push(firstElement)
             }
             const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
-            const firstfilter = newArr.filter((item, index) => item !== "artist")
-            const finalfilter = firstfilter.filter((item, index) => item !== "Err")
+            const finalfilter = newArr.filter((item) => item !== "artist").filter
+                ((item) => item !== "Err").filter((item) => item !== "gender")
             setPlatformList(finalfilter)
         }
     }, [filteredData])
@@ -42,7 +41,7 @@ const Index = () => {
                         <img
                             style={{ width: '100%', aspectRatio: 16 / 13, borderRadius: '0.25rem' }}
                             src="/photo.png"
-                            alt="Grapefruit slice atop a pile of other slices"
+                            alt="no image"
                         />
 
                         <div className="card-detail-container">

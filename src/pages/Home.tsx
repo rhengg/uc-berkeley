@@ -10,14 +10,7 @@ const Home = () => {
     const [searchTitle, setSearchTitle] = React.useState("");
     const [selectedPlatform, setSelectedPlatform] = React.useState<string>()
     const [selectedGender, setSelectedGender] = React.useState<string>()
-    const [selectedCountry, setSelectedCountry] = React.useState<any>(
-        //     () => {
-        //     const arrCountry = soundChartsData.map((item: any) => {
-        //         return item.artist_country
-        //     })
-        //     return (arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index)[0]);
-        // }
-    )
+    const [selectedCountry, setSelectedCountry] = React.useState<any>()
     const [platformList, setPlatformList] = React.useState<string[]>([])
     const [countryList, setCountryList] = React.useState<string[]>([])
     const [data, setData] = React.useState<any>(soundChartsData)
@@ -25,26 +18,6 @@ const Home = () => {
     const handleCardClick = (id: string) => {
         navigate({ pathname: "/detail", search: `?artist=${id}` })
     }
-
-    // const filteredByGender = (val: string) => {
-    //     const newData = soundChartsData.filter((item: any) => item.gender === val)
-    //     return newData
-    // }
-
-    // const filteredByCountry = (val: string) => {
-    //     const newData = soundChartsData.filter((item: any) => item.artist_country === val)
-    //     return newData
-    // }
-
-    // React.useEffect(() => {
-    //     if (selectedCountry) {
-    //         const sc = filteredByCountry(selectedCountry)
-    //         setData(sc)
-    //     } else if (selectedGender) {
-    //         const sg = filteredByGender(selectedGender.toLowerCase())
-    //         setData(sg)
-    //     }
-    // }, [selectedCountry, selectedGender])
 
     const getFileteredData = (country: string, gender: string) => {
         let final = soundChartsData
@@ -54,22 +27,12 @@ const Home = () => {
         if (gender) {
             final = final.filter((item: any) => item.gender === gender)
         }
-        console.log("sss", final);
-
         return final
     }
-
-
 
     React.useEffect(() => {
         setData(getFileteredData(selectedCountry as string, selectedGender as string))
     }, [selectedCountry, selectedGender])
-
-
-    // React.useEffect(() => {
-    //     console.log("data", data);
-
-    // }, [data])
 
     const filtereddata = data.filter((value: any) => {
         if (searchTitle === "") {
@@ -87,8 +50,8 @@ const Home = () => {
             arr.push(firstElement)
         }
         const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
-        const firstfilter = newArr.filter((item, index) => item !== "artist")
-        const finalfilter = firstfilter.filter((item, index) => item !== "Err")
+        const finalfilter = newArr.filter((item) => item !== "artist").filter
+            ((item) => item !== "Err").filter((item) => item !== "gender")
         return finalfilter
     }
 
