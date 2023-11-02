@@ -64,14 +64,9 @@ const Home = () => {
     }, [soundChartsData])
 
     return (
-        <div style={{ padding: '0rem 4rem' }}>
+        <div className='home-layout'>
 
-            <div style={{
-                padding: '1.5rem 0',
-                display: "flex",
-                alignItems: "center",
-                gap: "4rem",
-            }} >
+            <div className='home-header' >
                 <input
                     className='input-main'
                     type={'text'}
@@ -80,29 +75,40 @@ const Home = () => {
                     value={searchTitle}
                     onChange={(e) => setSearchTitle(e.target.value)}
                 />
-                <div style={{ height: "100%", display: "flex", alignItems: "center", gap: "1rem" }}>
-                    <p>Filter </p>
-                    <Dropdown
-                        id={"dropdown1"}
-                        value={selectedPlatform}
-                        options={platformList}
-                        selectedValue={setSelectedPlatform}
-                        placeholder='By Platform'
-                    />
-                    <Dropdown
-                        id={"dropdown2"}
-                        value={selectedGender}
-                        options={["male", "female",]}
-                        selectedValue={setSelectedGender}
-                        placeholder='By Gender'
-                    />
-                    <Dropdown
-                        id={"dropdown3"}
-                        value={selectedCountry}
-                        options={countryList}
-                        selectedValue={setSelectedCountry}
-                        placeholder='By Country'
-                    />
+
+                <div className='home-header-filter' >
+                    <p className='body' style={{ margin: '1rem 0' }} >Filter </p>
+
+                    <div
+                        className='hide-scroll'
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: '1rem',
+                            overflowX: 'auto'
+                        }}>
+                        <Dropdown
+                            id={"dropdown1"}
+                            value={selectedPlatform}
+                            options={platformList}
+                            selectedValue={setSelectedPlatform}
+                            placeholder='By Platform'
+                        />
+                        <Dropdown
+                            id={"dropdown2"}
+                            value={selectedGender}
+                            options={["male", "female",]}
+                            selectedValue={setSelectedGender}
+                            placeholder='By Gender'
+                        />
+                        <Dropdown
+                            id={"dropdown3"}
+                            value={selectedCountry}
+                            options={countryList}
+                            selectedValue={setSelectedCountry}
+                            placeholder='By Country'
+                        />
+                    </div>
                 </div>
 
             </div>
@@ -123,10 +129,7 @@ const Home = () => {
                     </div>
                 ) :
                     <div >
-                        <div style={{
-                            overflowX: "auto",
-                            height: 'calc(100vh - 180px)'
-                        }}>
+                        <div className='home-table-container' >
                             <table className='home-table'>
                                 <thead>
                                     <tr>
