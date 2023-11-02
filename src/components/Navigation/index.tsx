@@ -22,7 +22,7 @@ const Navigation = () => {
 					<p className="subtitle-two">South Asian Musicians</p>
 				</div>
 				<div className="nav-right">
-					<div>
+					<div className="hide">
 						<p className="subtitle-two">John Doe</p>
 					</div>
 					<div>
