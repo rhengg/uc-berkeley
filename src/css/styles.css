@@ -692,6 +692,7 @@
   display: flex;
   gap: 0.25rem;
   padding-left: 0.58rem;
+  flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 768px) {
