@@ -8,10 +8,8 @@ import { useNavigate } from 'react-router-dom'
 const Home = () => {
     const navigate = useNavigate()
     const [searchTitle, setSearchTitle] = React.useState("");
-    const [selectedPlatform, setSelectedPlatform] = React.useState<string>()
     const [selectedGender, setSelectedGender] = React.useState<string>()
     const [selectedCountry, setSelectedCountry] = React.useState<any>()
-    const [platformList, setPlatformList] = React.useState<string[]>([])
     const [countryList, setCountryList] = React.useState<string[]>([])
     const [data, setData] = React.useState<any>(soundChartsData)
 
@@ -42,25 +40,11 @@ const Home = () => {
         }
     })
 
-    const getPlatformList = (obj: any) => {
-        let arr: string[] = []
-        const length = Object.keys(obj).length
-        for (let index = 0; index < length; index++) {
-            const firstElement = Object.keys(obj)[index].split("_")[0];
-            arr.push(firstElement)
-        }
-        const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
-        const finalfilter = newArr.filter((item) => item !== "artist").filter
-            ((item) => item !== "Err").filter((item) => item !== "gender")
-        return finalfilter
-    }
-
     React.useEffect(() => {
         const arrCountry = soundChartsData.map((item: any) => {
             return item.artist_country
         })
         setCountryList(arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index));
-        setPlatformList(getPlatformList(soundChartsData[0]))
     }, [soundChartsData])
 
     return (
@@ -87,13 +71,6 @@ const Home = () => {
                             gap: '1rem',
                             position: "relative"
                         }}>
-                        <Dropdown
-                            id={"dropdown1"}
-                            value={selectedPlatform}
-                            options={platformList}
-                            selectedValue={setSelectedPlatform}
-                            placeholder='By Platform'
-                        />
                         <Dropdown
                             id={"dropdown2"}
                             value={selectedGender}
