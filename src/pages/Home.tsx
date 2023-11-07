@@ -4,6 +4,7 @@ import CountCard from '../components/CountCard'
 import Dropdown from '../components/Dropdown'
 import soundChartsData from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
+import FuzzySearch from 'fuzzy-search'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -12,6 +13,18 @@ const Home = () => {
     const [selectedCountry, setSelectedCountry] = React.useState<any>()
     const [countryList, setCountryList] = React.useState<string[]>([])
     const [data, setData] = React.useState<any>(soundChartsData)
+
+    const searcher = new FuzzySearch(data, ['artist', 'artist_country', 'artist_genres'], {
+        caseSensitive: false,
+    });
+
+    React.useEffect(() => {
+        if (searchTitle === '') {
+            setData(getFileteredData(selectedCountry as string, selectedGender as string))
+        } else {
+            setData(searcher.search(searchTitle))
+        }
+    }, [searchTitle])
 
     const handleCardClick = (id: string) => {
         navigate({ pathname: "/detail", search: `?artist=${id}` })
@@ -31,14 +44,6 @@ const Home = () => {
     React.useEffect(() => {
         setData(getFileteredData(selectedCountry as string, selectedGender as string))
     }, [selectedCountry, selectedGender])
-
-    const filtereddata = data.filter((value: any) => {
-        if (searchTitle === "") {
-            return value;
-        } else if (value.artist.toLowerCase().includes(searchTitle.toLowerCase())) {
-            return value;
-        }
-    })
 
     React.useEffect(() => {
         const arrCountry = soundChartsData.map((item: any) => {
@@ -91,7 +96,7 @@ const Home = () => {
             </div>
 
             {
-                filtereddata?.length === 0 ? (
+                data?.length === 0 ? (
                     <div style={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -128,7 +133,7 @@ const Home = () => {
                                 </thead>
 
                                 {
-                                    filtereddata.map((item: any, index: number) => {
+                                    data.map((item: any, index: number) => {
                                         return (
                                             <tbody key={index}>
                                                 <tr>
