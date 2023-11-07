@@ -16,6 +16,17 @@ const Home = () => {
     const [countryList, setCountryList] = React.useState<string[]>([])
     const [platformList, setPlatformList] = React.useState<string[]>()
     const [data, setData] = React.useState<any>(soundChartsData)
+    const [error, setError] = React.useState(false)
+
+    React.useEffect(() => {
+        const e = Math.round(Math.random() * 100 / 16)
+        if (e > 1) {
+            setData(soundChartsData)
+        }
+        else {
+            setError(true)
+        }
+    }, [])
 
     const searcher = new FuzzySearch(data, ['artist', 'artist_country', 'artist_genres'], {
         caseSensitive: false,
@@ -67,6 +78,21 @@ const Home = () => {
         setCountryList(arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index));
         setPlatformList(getPlatformList(soundChartsData[0]))
     }, [soundChartsData])
+
+    if (error) return (<div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'start',
+        height: 'calc(100vh - 220px)',
+        padding: '1rem',
+        background: '#f9f9f9',
+    }}>
+        <div style={{ padding: '1rem', background: '#ffffff' }}>
+            <p className='subtitle-two' >Error fetching data</p>
+        </div>
+    </div>
+    )
+
 
     return (
         <div className='home-layout'>
