@@ -1,6 +1,7 @@
 import { MdArrowUpward } from 'react-icons/md'
 import data from '../../database/Soundcharts.json'
 import React from 'react';
+import { getPlatformData } from '../../utils/getPLatformData';
 
 const Index = () => {
     const arr = Array(8).fill(0)
@@ -16,7 +17,6 @@ const Index = () => {
         setFilteredData(newData[0])
         setGenreList(list)
     }, [artist])
-
 
     React.useEffect(() => {
         if (filteredData) {
@@ -118,7 +118,24 @@ const Index = () => {
                                             <tbody>
                                                 <tr>
                                                     <td>#1</td>
-                                                    <td>{filteredData[`${item}_followers_total`] ? filteredData[`${item}_followers_total`] : 0}</td>
+                                                    <td>
+                                                        {
+                                                            item.toLowerCase() === "line" ?
+                                                                getPlatformData(artist as string, item.toLowerCase())[`${item}_music_followers_total`]
+                                                                    ?
+                                                                    getPlatformData(artist as string, item.toLowerCase())[`${item}_music_followers_total`]
+                                                                    :
+                                                                    0
+                                                                :
+
+                                                                getPlatformData(artist as string, item.toLowerCase())[`${item}_followers_total`]
+                                                                    ?
+                                                                    getPlatformData(artist as string, item.toLowerCase())[`${item}_followers_total`]
+                                                                    :
+                                                                    0
+
+                                                        }
+                                                    </td>
                                                     <td>
                                                         <div style={{ display: "flex", alignItems: "center" }}>
                                                             <p style={{ color: "green" }}>8% </p>
