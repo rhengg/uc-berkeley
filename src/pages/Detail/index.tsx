@@ -2,6 +2,7 @@ import { MdArrowUpward } from 'react-icons/md'
 import data from '../../database/Soundcharts.json'
 import React from 'react';
 import { getPlatformData } from '../../utils/getPLatformData';
+import DetailTable from '../../components/Detailtable'
 
 const Index = () => {
     const arr = Array(8).fill(0)
@@ -9,7 +10,7 @@ const Index = () => {
     const artist = params.get("artist")
     const [filteredData, setFilteredData] = React.useState<any>()
     const [genreList, setGenreList] = React.useState<any>()
-    const [platformList, setPlatformList] = React.useState<any>()
+    const [platformList, setPlatformList] = React.useState<string[]>()
 
     React.useEffect(() => {
         const newData = data?.filter((val) => val.artist === artist)
@@ -91,78 +92,9 @@ const Index = () => {
                         <div className='header-border-box'>
                             <p className='label'>Performance</p>
                         </div>
-                        <div className='detail-performance-box'>
-                            {platformList?.map((item: string, index: number) => {
-                                return (
-                                    <div key={index} className='performance-card'>
-                                        <div className='table-header-with-icon'>
-                                            <div style={{ width: "24px", height: "24px", background: "grey" }}></div>
-                                            <p>{item}</p>
-                                        </div>
-                                        <table key={index} className='performance-table-data'>
-                                            <thead>
-                                                <tr>
-                                                    <th>Rank</th>
-                                                    <th>Followers</th>
-                                                    <th></th>
-                                                    {filteredData[`${item}_monthly_listeners_total`] ?
-                                                        <th>Monthly Listeners</th>
-                                                        : <></>
-                                                    }
-                                                    {filteredData[`${item}_monthly_listeners_total`] ?
-                                                        <th></th>
-                                                        : <></>
-                                                    }
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>#1</td>
-                                                    <td>
-                                                        {
-                                                            item.toLowerCase() === "line" ?
-                                                                getPlatformData(artist as string, item.toLowerCase())[`${item}_music_followers_total`]
-                                                                    ?
-                                                                    getPlatformData(artist as string, item.toLowerCase())[`${item}_music_followers_total`]
-                                                                    :
-                                                                    0
-                                                                :
-
-                                                                getPlatformData(artist as string, item.toLowerCase())[`${item}_followers_total`]
-                                                                    ?
-                                                                    getPlatformData(artist as string, item.toLowerCase())[`${item}_followers_total`]
-                                                                    :
-                                                                    0
-
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        <div style={{ display: "flex", alignItems: "center" }}>
-                                                            <p style={{ color: "green" }}>8% </p>
-                                                            <MdArrowUpward style={{ color: "green" }} size={18} />
-                                                        </div>
-                                                    </td>
-                                                    <td>{filteredData[`${item}_monthly_listeners_total`]}</td>
-                                                    {filteredData[`${item}_monthly_listeners_change_prc`]
-                                                        ?
-                                                        <td>
-                                                            <div style={{ display: "flex", alignItems: "center" }}>
-                                                                <p style={{ color: "green" }}>
-                                                                    {filteredData[`${item}_monthly_listeners_change_prc`]}%
-                                                                </p>
-                                                                <MdArrowUpward style={{ color: "green" }} size={18} />
-                                                            </div>
-                                                        </td>
-                                                        :
-                                                        <td></td>
-                                                    }
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                )
-                            })}
-                        </div>
+                        {platformList &&
+                            <DetailTable platformList={platformList} data={filteredData && filteredData} artist={artist as string} />
+                        }
                     </div>
 
                 </div>
