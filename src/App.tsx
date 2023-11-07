@@ -33,7 +33,7 @@ const App = () => {
         }
         {isUserAuthenticated() &&
           <Route element={<HomeLayout />}>
-            <Route path="/home" element={<Home />}></Route>
+            <Route path="/" element={<Home />}></Route>
             <Route path="/detail" element={<Detail />}></Route>
             <Route path='*' element={<NotFound />} />
           </Route>
