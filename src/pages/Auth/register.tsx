@@ -64,20 +64,6 @@ const Register = () => {
         ]
     )
 
-    function isAllPresent(str: string) {
-        var pattern = new RegExp(
-            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
-        );
-        if (!str || str.length === 0) {
-            return false
-        }
-        if (pattern.test(str) && (str.length > 8 || str.length === 8)) {
-            return true
-        } else {
-            return false
-        }
-    }
-
     const checkValidation = () => {
         const validateData = formData.map((item) => {
             if (item.value === "") {
@@ -95,11 +81,6 @@ const Register = () => {
         const filteredData = formData.map((item) => {
             if (item.name === event.target.name) {
                 item.value = event.target.value
-                if (isAllPresent(event.target.value)) {
-                    item.valid = true
-                } else {
-                    item.valid = false
-                }
                 return item
             } else {
                 return item
