@@ -6,6 +6,7 @@ import soundChartsData from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
 import FuzzySearch from 'fuzzy-search'
 import { MdClose } from 'react-icons/md'
+import { getPlatformData } from '../utils/getPLatformData'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -13,6 +14,7 @@ const Home = () => {
     const [selectedGender, setSelectedGender] = React.useState<string>()
     const [selectedCountry, setSelectedCountry] = React.useState<any>()
     const [countryList, setCountryList] = React.useState<string[]>([])
+    const [platformList, setPlatformList] = React.useState<string[]>()
     const [data, setData] = React.useState<any>(soundChartsData)
 
     const searcher = new FuzzySearch(data, ['artist', 'artist_country', 'artist_genres'], {
@@ -46,11 +48,24 @@ const Home = () => {
         setData(getFileteredData(selectedCountry as string, selectedGender as string))
     }, [selectedCountry, selectedGender])
 
+    const getPlatformList = (obj: any) => {
+        let arr: string[] = []
+        const length = Object.keys(obj).length
+        for (let index = 0; index < length; index++) {
+            const firstElement = Object.keys(obj)[index].split("_")[0];
+            arr.push(firstElement)
+        }
+        const newArr = arr.filter((item, index) => arr.indexOf(item) === index);
+        const finalfilter = newArr.filter((item) => item !== "artist").filter
+            ((item) => item !== "Err").filter((item) => item !== "gender")
+        return finalfilter
+    }
     React.useEffect(() => {
         const arrCountry = soundChartsData.map((item: any) => {
             return item.artist_country
         })
         setCountryList(arrCountry.filter((item: any, index: number) => arrCountry.indexOf(item) === index));
+        setPlatformList(getPlatformList(soundChartsData[0]))
     }, [soundChartsData])
 
     return (
@@ -167,22 +182,13 @@ const Home = () => {
                                 <thead>
                                     <tr>
                                         <th>Artist</th>
-                                        <th>Spotify</th>
-                                        <th>Youtube</th>
-                                        <th>Instagram</th>
-                                        <th>Tiktok</th>
-                                        <th>Deezer</th>
-                                        <th>Facebook</th>
-                                        <th>Soundcloud</th>
-                                        <th>Line</th>
-                                        <th>Aghami</th>
-                                        <th>Gaana</th>
-                                        <th>Jiosaavn</th>
-                                        <th>Triller</th>
-                                        <th>Boomplay</th>
+                                        {platformList?.map((item) => {
+                                            return (
+                                                <th>{item.charAt(0).toUpperCase() + item.slice(1)}</th>
+                                            )
+                                        })}
                                     </tr>
                                 </thead>
-
                                 {
                                     data.map((item: any, index: number) => {
                                         return (
@@ -197,26 +203,60 @@ const Home = () => {
                                                             genre={item.artist_genres}
                                                         />
                                                     </td>
-                                                    <td>
-                                                        <div style={{
-                                                            display: 'flex',
-                                                            flexDirection: 'column',
-                                                            gap: '1rem'
-                                                        }}>
-                                                            <CountCard
-                                                                title='Followers'
-                                                                percentage={item.spotify_followers_change_prc}
-                                                                value={item.spotify_followers_total}
-                                                            />
-                                                            <CountCard
-                                                                title='Monthly listeners'
-                                                                percentage={item.spotify_monthly_listeners_change_prc}
-                                                                value={item.spotify_monthly_listeners_total}
-                                                            />
-                                                        </div>
-                                                    </td>
+                                                    {platformList && platformList.map((obj, index) => {
+                                                        return (
+                                                            <td key={index}>
+                                                                <div style={{
+                                                                    display: 'flex',
+                                                                    flexDirection: 'column',
+                                                                    gap: '1rem'
+                                                                }}>
 
-                                                    <td>
+                                                                    {
+                                                                        obj === "Line"
+                                                                            ?
+                                                                            <>
+                                                                                <CountCard
+                                                                                    title='Followers'
+                                                                                    percentage={getPlatformData(item.artist as string, obj as string)[`${obj}_music_followers_change_prc`]}
+                                                                                    value={getPlatformData(item.artist as string, obj as string)[`${obj}_music_followers_total`]}
+                                                                                />{
+                                                                                    getPlatformData(item.artist as string, obj.toLowerCase() as string)[`${obj}_music_monthly_listeners_total`] ?
+                                                                                        <CountCard
+                                                                                            title='Monthly listeners'
+                                                                                            percentage={getPlatformData(item.artist as string, obj.toLowerCase() as string)[`${obj}_music_monthly_listeners_change_prc`]}
+                                                                                            value={getPlatformData(item.artist as string, obj.toLowerCase() as string)[`${obj}_music_monthly_listeners_total`]}
+                                                                                        />
+                                                                                        :
+                                                                                        <></>
+                                                                                }
+                                                                            </>
+                                                                            :
+                                                                            <>
+                                                                                <CountCard
+                                                                                    title='Followers'
+                                                                                    percentage={getPlatformData(item.artist as string, obj as string)[`${obj}_followers_change_prc`]}
+                                                                                    value={getPlatformData(item.artist as string, obj as string)[`${obj}_followers_total`]}
+                                                                                />
+                                                                                {getPlatformData(item.artist as string, obj.toLowerCase() as string)[`${obj}_monthly_listeners_total`]
+                                                                                    ?
+                                                                                    <CountCard
+                                                                                        title='Monthly listeners'
+                                                                                        percentage={getPlatformData(item.artist as string, obj.toLowerCase() as string)[`${obj}_monthly_listeners_change_prc`]}
+                                                                                        value={getPlatformData(item.artist as string, obj.toLowerCase() as string)[`${obj}_monthly_listeners_total`]}
+                                                                                    />
+                                                                                    :
+                                                                                    <></>
+                                                                                }
+                                                                            </>
+                                                                    }
+                                                                </div>
+                                                            </td>
+
+                                                        )
+                                                    })}
+
+                                                    {/* <td>
                                                         <div style={{
                                                             display: 'flex',
                                                             flexDirection: 'column',
@@ -339,7 +379,7 @@ const Home = () => {
                                                             percentage='8'
                                                             value={item.Boomplay_favorites_total}
                                                         />
-                                                    </td>
+                                                    </td> */}
 
 
                                                 </tr>
