@@ -1,5 +1,6 @@
 import React from "react";
 import { MdNorthEast } from 'react-icons/md'
+import './card.css'
 
 type CardProps = {
 	name: string
