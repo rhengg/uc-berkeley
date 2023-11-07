@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
-
+import './navigation.css'
 
 const Navigation = () => {
 	const handleSignOut = () => {

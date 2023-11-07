@@ -1,0 +1,68 @@
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  width: 26rem;
+  height: 8rem;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 0.25rem;
+  background: var(--white);
+}
+
+.image-holder {
+  width: 25%;
+}
+
+.details-holder {
+  width: 65%;
+}
+
+.card-icon-holder {
+  width: 10%;
+}
+
+.hide-scroll {
+  -ms-overflow-style: none;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scroll ::-moz-scrollbar {
+  display: none;
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  width: max-content;
+  background: var(--stroke);
+  border-radius: 0.25rem;
+}
+
+.tag-container {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 1rem;
+  overflow-x: scroll;
+}
+
+.icon {
+  max-width: 2.6rem;
+  max-height: 2.6rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.icon:hover {
+  background: var(--stroke);
+}

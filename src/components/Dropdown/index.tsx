@@ -1,5 +1,6 @@
 import React from 'react'
 import { MdOutlineArrowDropDown, MdOutlineArrowDropUp, MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
+import './dropdown.css'
 
 type DropdownPropTypes = {
     options: string[],
