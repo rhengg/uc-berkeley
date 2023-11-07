@@ -5,6 +5,7 @@ import Dropdown from '../components/Dropdown'
 import soundChartsData from '../database/Soundcharts.json'
 import { useNavigate } from 'react-router-dom'
 import FuzzySearch from 'fuzzy-search'
+import { MdClose } from 'react-icons/md'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -93,6 +94,56 @@ const Home = () => {
                     </div>
                 </div>
 
+
+            </div>
+            <div style={{
+                padding: '1rem 0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem'
+            }}>
+                {selectedGender !== "" && selectedGender !== undefined ?
+                    <div style={{
+                        width: 'max-content',
+                        padding: '0.5rem',
+                        background: '#F9F9F9',
+                        display: 'flex',
+                        gap: '0.5rem',
+                        alignItems: 'center'
+                    }}>
+                        <p className='body' >{selectedGender.charAt(0).toUpperCase() + selectedGender.slice(1)}</p>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <MdClose
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => { setSelectedGender('') }}
+                            />
+                        </div>
+                    </div>
+                    :
+                    <></>
+                }
+
+                {selectedCountry !== "" && selectedCountry !== undefined ?
+                    <div style={{
+                        width: 'max-content',
+                        padding: '0.5rem',
+                        background: '#F9F9F9',
+                        display: 'flex',
+                        gap: '0.5rem',
+                        alignItems: 'center'
+                    }}>
+                        <p className='body' >{selectedCountry.charAt(0).toUpperCase() + selectedCountry.slice(1)}</p>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <MdClose
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => { setSelectedCountry('') }}
+                            />
+                        </div>
+                    </div>
+                    :
+                    <></>
+                }
+
             </div>
 
             {
@@ -159,7 +210,7 @@ const Home = () => {
                                                             />
                                                             <CountCard
                                                                 title='Monthly listeners'
-                                                                percentage={item.spotify_monthly_listeners_Change_prc}
+                                                                percentage={item.spotify_monthly_listeners_change_prc}
                                                                 value={item.spotify_monthly_listeners_total}
                                                             />
                                                         </div>

@@ -30,7 +30,7 @@ const CountCard = (props: CountCardProps) => {
 					width: '40%',
 				}}>
 					{
-						p > 0 ?
+						p >= 0 ?
 							<>
 								<p className="body positive">{percentage ? percentage : 0}% </p>
 								<MdArrowUpward className="positive" height={'48px'} />
