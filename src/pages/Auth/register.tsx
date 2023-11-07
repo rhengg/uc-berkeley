@@ -8,7 +8,6 @@ type FormDataType = {
     value?: string,
     type: string,
     error: boolean
-    valid: boolean
 }
 
 type InputErrorType = {
@@ -32,7 +31,6 @@ const Register = () => {
                 value: "",
                 type: "text",
                 error: false,
-                valid: false
             },
             {
                 title: "Email",
@@ -41,7 +39,6 @@ const Register = () => {
                 value: "",
                 type: "email",
                 error: false,
-                valid: false
             },
             {
                 title: "Password",
@@ -50,7 +47,6 @@ const Register = () => {
                 value: "",
                 type: "password",
                 error: false,
-                valid: false
             },
             {
                 title: "Re-enter Password",
@@ -59,7 +55,6 @@ const Register = () => {
                 value: "",
                 type: "password",
                 error: false,
-                valid: false
             }
         ]
     )
