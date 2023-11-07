@@ -1,5 +1,6 @@
 import React from "react";
 import { MdArrowUpward, MdArrowDownward } from 'react-icons/md'
+import './countcard.css'
 
 type CountCardProps = {
 	id?: string
