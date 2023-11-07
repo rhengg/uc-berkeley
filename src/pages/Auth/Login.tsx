@@ -31,7 +31,7 @@ const Login = () => {
             } else {
                 Cookies.set("testUserAuthenticated", parsedData.name, { expires: 7, path: '/' })
                 console.log("cookies set");
-                window.location.replace("/home")
+                window.location.replace("/")
             }
         }
     }
