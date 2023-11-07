@@ -428,14 +428,14 @@
 }
 
 
-.home-header{
+.home-header {
   padding: 1.5rem 0;
   display: flex;
   align-items: center;
   gap: 4rem;
 }
 
-.home-header-filter{
+.home-header-filter {
   height: 100%;
   display: flex;
   align-items: center;
@@ -445,6 +445,7 @@
 .home-layout {
   padding: 0 4rem;
 }
+
 /* CSS for Authentication */
 
 .auth-layout-main {
@@ -505,16 +506,20 @@
     z-index: 10;
   }
 
-  .home-header{
+  .home-header {
     display: block;
   }
-  
-  .home-header-filter{
+
+  .home-header-filter {
     display: block;
   }
 
   .home-layout {
     padding: 0 1rem;
+  }
+
+  .hide-scroll {
+    flex-wrap: wrap;
   }
 
 }
@@ -571,7 +576,7 @@
   gap: 1rem;
 }
 
-.home-table-container{
+.home-table-container {
   overflow-x: auto;
   height: calc(100vh - 180px);
 }
@@ -723,21 +728,25 @@
   .detail-sub-container-2 {
     width: 100%;
   }
-  
-  .home-table-container{
+
+  .home-table-container {
     overflow-x: auto;
     height: calc(100vh - 280px);
   }
-  .nav-container{
+
+  .nav-container {
     margin: 0 1rem;
   }
-  .hide{
+
+  .hide {
     display: none;
   }
-  .nav-left{
+
+  .nav-left {
     width: 65%;
   }
-  .nav-right{
+
+  .nav-right {
     width: 35%;
     justify-content: flex-end;
   }
@@ -836,7 +845,7 @@
 
 .dropdown-options-container {
   box-sizing: border-box;
-  width: 100%;
+  width: inherit;
   min-width: 10rem;
   height: max-content;
   padding: 0.5rem 1rem;

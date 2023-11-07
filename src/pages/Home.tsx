@@ -85,8 +85,7 @@ const Home = () => {
                             display: "flex",
                             alignItems: "center",
                             gap: '1rem',
-                            overflowX: 'scroll',
-                            overflowY: "hidden"
+                            position: "relative"
                         }}>
                         <Dropdown
                             id={"dropdown1"}
