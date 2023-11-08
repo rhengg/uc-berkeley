@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import './navigation.css'
 
 const Navigation = () => {
+	// removes the cookie and redirects to login page
 	const handleSignOut = () => {
 		Cookies.remove("testUserAuthenticated");
 		window.location.replace("/login")

@@ -1,17 +1,18 @@
-import { MdArrowUpward } from 'react-icons/md'
 import data from '../../database/Soundcharts.json'
 import React from 'react';
-import { getPlatformData } from '../../utils/getPLatformData';
 import DetailTable from '../../components/Detailtable'
 
 const Index = () => {
-    const arr = Array(8).fill(0)
     const params = new URLSearchParams(window.location.search);
     const artist = params.get("artist")
     const [filteredData, setFilteredData] = React.useState<any>()
     const [genreList, setGenreList] = React.useState<any>()
     const [platformList, setPlatformList] = React.useState<string[]>()
 
+    /** 
+     * Filters the entire data with the params value(i.e artists) obtained from the url.
+     * Generates a genre list from the data and stores in a useState hook.
+    */
     React.useEffect(() => {
         const newData = data?.filter((val) => val.artist === artist)
         const list = newData[0].artist_genres.split(",")
@@ -19,6 +20,7 @@ const Index = () => {
         setGenreList(list)
     }, [artist])
 
+    // generates a list of platforms from the above filtered data and stores in a useState hook.
     React.useEffect(() => {
         if (filteredData) {
             let arr: string[] = []

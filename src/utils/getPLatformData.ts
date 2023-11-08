@@ -2,6 +2,11 @@ import soundcharts from '../database/Soundcharts.json'
 
 type Stringarray = string[]
 
+/** 
+ * Filters the entire data with "filterName" taken as prop where "artist" is passed as value.
+ * Filters again with "key" taken as prop where platform name(i.e spotify or youtube or etc.) is passed as value.
+ * Returns an object with applied two filters.
+*/
 export const getPlatformData = (filterName: string, key: string) => {
     const newData = soundcharts?.filter((val) => val.artist === filterName)[0]
     let arr: Array<Stringarray> = []

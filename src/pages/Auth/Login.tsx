@@ -10,6 +10,13 @@ const Login = () => {
     const [invalidPassword, setInvalidPassword] = React.useState<boolean>(false)
     const [inputError, setInputError] = React.useState("")
 
+
+    /** 
+        * Validates the user input.
+        * Compares input values with localStorage values.
+        * After validation, sets a cookie and then redirects to list view page.
+        * If Validation fails, sets respective useState hooks with its respective error. 
+    */
     const handleLoginApiCall = async (e: React.BaseSyntheticEvent) => {
         e.preventDefault()
         setUnRegisteredEmail(false)
@@ -36,6 +43,7 @@ const Login = () => {
         }
     }
 
+    // this function redirects a user to register page
     const handleAccountCreateClick = () => {
         navigate({
             pathname: "/register"
