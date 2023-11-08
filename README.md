@@ -28,6 +28,13 @@ You will also see any lint errors in the console.
 2. Login form email field cannot be empty.
 3. Only when login email and password are present in Local Storage data system will be logged in and redirected to dashboard. If not, it will throw an invalid credential error. 
 
+# Database
+
+## Soundcharts.json
+We updated this json file by hardcoding the 'Gender' property.Entire project is using this updated database. 
+
+NOTE: Kindly refrain from modifying any data in the database as it might result in unexpected behaviour.    
+
 # Dashboard
 
 ## Home page

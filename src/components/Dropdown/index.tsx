@@ -10,6 +10,10 @@ type DropdownPropTypes = {
     value?: string
 }
 
+/**
+ * This is a dropdown component that is used in home page
+ * This component accept options, value, id, etc props to render the dropdown button with its respective option list.
+ */
 export default function Index({ id, value, options, placeholder, selectedValue }: DropdownPropTypes) {
     const [openDropdown, setOpenDropdown] = React.useState(false)
 

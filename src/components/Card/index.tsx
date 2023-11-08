@@ -12,8 +12,8 @@ type CardProps = {
 }
 
 /**
- * This is card component used in home page
- * This component accept name, country, genre etc props to render the card
+ * This card component is used in home page.
+ * This component accept name, country, genre etc props to render the profile card. 
  */
 
 const Card = (props: CardProps) => {

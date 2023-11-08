@@ -2,6 +2,11 @@ import Cookies from 'js-cookie'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+/** 
+    * Returns the login page.
+    * Renders two input fields(i.e email and password)
+    * Renders two buttons(i.e signin and register)
+*/
 const Login = () => {
     const navigate = useNavigate()
     const [inputEmail, setInputEmail] = React.useState('')

@@ -10,6 +10,11 @@ type FormDataType = {
     error: boolean
 }
 
+/** 
+    * Returns the register page.
+    * Renders four input fields(i.e name,email, password and confirmPassword)
+    * Renders two buttons(i.e signin and signup)
+*/
 const Register = () => {
     const navigate = useNavigate()
     const [incorrectPassword, setIncorrectPassword] = React.useState(false)
