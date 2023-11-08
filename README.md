@@ -35,11 +35,12 @@ You will also see any lint errors in the console.
 2. List the dataset in the UI using [JS Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method.
 3. Search by name, genre and country are implemented using [Fuzzy Search](https://github.com/wouterrutgers/fuzzy-search) npm package. 
 4. Filter the dataset by Country and Gender using [JS Filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) method.
+5. On clicking individual card, redirect to detail page with "artist" name as query parameter which will be used for filtering individual data.
 
 
 ## Details page
-1. 
-2. 
+1. Filter the dataset using the "artist" name.
+2. List the filtered dataset in the UI using [JS Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method.
 
 
 ## Learn More
