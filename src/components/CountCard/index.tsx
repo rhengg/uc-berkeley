@@ -11,7 +11,7 @@ type CountCardProps = {
 
 /**
  * This component is used to display followers, monthly subscribers data and data change percentage
- * This card accepts title, value, percentage as props
+ * This card accepts id, title, value, percentage as props
  */
 
 

@@ -13,7 +13,7 @@ type CardProps = {
 
 /**
  * This card component is used in home page.
- * This component accept name, country, genre etc props to render the profile card. 
+ * This component accept name, id, image, origin, handleCardClick: (id: string) => void, genre as props to render the profile card. 
  */
 
 const Card = (props: CardProps) => {
