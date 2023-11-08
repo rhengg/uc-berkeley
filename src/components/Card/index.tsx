@@ -11,7 +11,10 @@ type CardProps = {
 	genre?: string
 }
 
-
+/**
+ * This is card component used in home page
+ * This component accept name, country, genre etc props to render the card
+ */
 
 const Card = (props: CardProps) => {
 	const { id, name, image, origin, handleCardClick, genre } = props
