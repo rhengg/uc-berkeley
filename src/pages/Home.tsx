@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import FuzzySearch from 'fuzzy-search'
 import { MdClose } from 'react-icons/md'
 import { getPlatformData } from '../utils/getPLatformData'
+import Error from '../components/Error'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -18,6 +19,11 @@ const Home = () => {
     const [data, setData] = React.useState<any>(soundChartsData)
     const [error, setError] = React.useState(false)
 
+    /**
+     * Fake data fetching error implemented using Math.random() method.
+     * On every page refresh this function will return either data or an error.
+     */
+
     React.useEffect(() => {
         const e = Math.round(Math.random() * 100 / 16)
         if (e > 1) {
@@ -28,6 +34,7 @@ const Home = () => {
         }
     }, [])
 
+    // Search by name, genre and country are implemented using Fuzzy Search npm package.
     const searcher = new FuzzySearch(data, ['artist', 'artist_country', 'artist_genres'], {
         caseSensitive: false,
     });
@@ -86,19 +93,7 @@ const Home = () => {
         setPlatformList(getPlatformList(soundChartsData[0]))
     }, [soundChartsData])
 
-    if (error) return (<div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'start',
-        height: 'calc(100vh - 220px)',
-        padding: '1rem',
-        background: '#f9f9f9',
-    }}>
-        <div style={{ padding: '1rem', background: '#ffffff' }}>
-            <p className='subtitle-two' >Error fetching data</p>
-        </div>
-    </div>
-    )
+    if (error) return <Error errorMessage='Error fetching data' />
 
 
     return (
@@ -196,18 +191,7 @@ const Home = () => {
 
             {
                 data?.length === 0 ? (
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'start',
-                        height: 'calc(100vh - 220px)',
-                        padding: '1rem',
-                        background: '#f9f9f9',
-                    }}>
-                        <div style={{ padding: '1rem', background: '#ffffff' }}>
-                            <p className='subtitle-two' >No Artist Found</p>
-                        </div>
-                    </div>
+                    <Error errorMessage='No Artist Found' />
                 ) :
                     <div >
                         <div className='home-table-container' >
