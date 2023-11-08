@@ -8,6 +8,7 @@ const Navigation = () => {
 		Cookies.remove("testUserAuthenticated");
 		window.location.replace("/login")
 	}
+
 	return (
 		<div className="nav-main">
 			<div className="nav-container">
@@ -24,7 +25,7 @@ const Navigation = () => {
 				</div>
 				<div className="nav-right">
 					<div className="hide">
-						<p className="subtitle-two">John Doe</p>
+						<p className="subtitle-two">{Cookies.get("testUserAuthenticated")}</p>
 					</div>
 					<div>
 						<button className="large-secondary-btn" onClick={handleSignOut}> Sign Out </button>
