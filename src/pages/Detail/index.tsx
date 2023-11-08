@@ -2,6 +2,13 @@ import data from '../../database/Soundcharts.json'
 import React from 'react';
 import DetailTable from '../../components/Detailtable'
 
+
+/** 
+    * Returns the detail page.
+    * URLSearchParams named artist is used to filter the data.
+    * DetailTable component is used which renders the music platform analytics card.
+    * The entire page renders a profile card, an about card and analytics table.
+*/
 const Index = () => {
     const params = new URLSearchParams(window.location.search);
     const artist = params.get("artist")

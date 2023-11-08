@@ -7,6 +7,10 @@ type DetailTableType = {
     data: any,
     artist?: string
 }
+/**
+ * This component is used in detail page
+ * This component accept platformList, data and artist props to render the music platform analytics card
+ */
 
 const Index = ({ platformList, data, artist }: DetailTableType) => {
     return (
