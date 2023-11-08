@@ -9,6 +9,17 @@ import { MdClose } from 'react-icons/md'
 import { getPlatformData } from '../utils/getPLatformData'
 import Error from '../components/Error'
 
+
+/**
+ * This page will render after login the system(i.e home page).
+ * Artists data are listed in this page.
+ * Artist data can be search, filter from this page,
+ * Card component is used which renders the profile card.
+ * Count Card component is used which renders music platform analytics card.
+ * Dropdown component is used which renders dropdown to filter the data by gender and country.
+ * Error component is used which renders no artist found or error fetching data.
+ */
+
 const Home = () => {
     const navigate = useNavigate()
     const [searchTitle, setSearchTitle] = React.useState("");

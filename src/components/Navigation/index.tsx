@@ -2,6 +2,12 @@ import React from "react";
 import Cookies from 'js-cookie';
 import './navigation.css'
 
+
+/**
+ * Navigation component is used in home layout 
+ * This component renders brand title, user name and signout button 
+ */
+
 const Navigation = () => {
 	// removes the cookie and redirects to login page
 	const handleSignOut = () => {

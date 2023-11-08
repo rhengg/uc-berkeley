@@ -9,6 +9,12 @@ type CountCardProps = {
 	percentage: string
 }
 
+/**
+ * This component is used to display followers, monthly subscribers data and data change percentage
+ * This card accepts title, value, percentage as props
+ */
+
+
 const CountCard = (props: CountCardProps) => {
 
 	const { id, percentage, value, title } = props
