@@ -11,7 +11,7 @@ import Register from './pages/Auth/register';
 
 const App = () => {
 
-
+  // returns true if the cookie is present, otherwise returns false
   const isUserAuthenticated = () => {
     const cookie = Cookies.get('testUserAuthenticated');
     if (cookie) {

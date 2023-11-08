@@ -13,6 +13,7 @@ type DropdownPropTypes = {
 export default function Index({ id, value, options, placeholder, selectedValue }: DropdownPropTypes) {
     const [openDropdown, setOpenDropdown] = React.useState(false)
 
+    // handles the style property of the html element upon change in user input and also toggles the useState hook value.
     const handleDropdownClick = () => {
         setOpenDropdown(!openDropdown);
         const div = document.getElementById(`dropdown-options-container_${id ? id : ""}`) as HTMLElement

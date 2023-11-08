@@ -10,14 +10,6 @@ type FormDataType = {
     error: boolean
 }
 
-type InputErrorType = {
-    name?: boolean,
-    email?: boolean,
-    password?: boolean,
-    confirmPassword?: boolean,
-    passwordValidation?: boolean
-}
-
 const Register = () => {
     const navigate = useNavigate()
     const [incorrectPassword, setIncorrectPassword] = React.useState(false)
@@ -59,6 +51,10 @@ const Register = () => {
         ]
     )
 
+    /**    
+     * If "value" key is empty then returns the "error" key value of each object of as true.
+     * Otherwise it returns "error" key value as false.
+    */
     const checkValidation = () => {
         const validateData = formData.map((item) => {
             if (item.value === "") {
@@ -72,6 +68,7 @@ const Register = () => {
         return validateData
     }
 
+    // function runs on change in input value and stores the value in a useState hook called "formData"
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const filteredData = formData.map((item) => {
             if (item.name === event.target.name) {
@@ -84,6 +81,11 @@ const Register = () => {
         setFormData(filteredData)
     }
 
+    /** 
+     * Validates the user input.
+     * After validation, stores(registers) the user data in localStorage for later login flows.
+     * If Validation fails, sets respective useState hooks with its respective error.  
+    */
     const handleSignUp = async (e: React.BaseSyntheticEvent) => {
         e.preventDefault()
         const values = Object.fromEntries((new FormData(e.target as HTMLFormElement)).entries())
@@ -101,6 +103,7 @@ const Register = () => {
         }
     }
 
+    // redirects the user to login page
     const handleSignInClick = () => {
         navigate({
             pathname: "/signin"

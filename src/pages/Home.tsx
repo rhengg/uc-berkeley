@@ -32,6 +32,7 @@ const Home = () => {
         caseSensitive: false,
     });
 
+    // data is modified as search input value changes along with two applied filters(i.e country and gender).
     React.useEffect(() => {
         if (searchTitle === '') {
             setData(getFileteredData(selectedCountry as string, selectedGender as string))
@@ -40,10 +41,12 @@ const Home = () => {
         }
     }, [searchTitle])
 
+    //redirects the user to detail page when interacted with card button.
     const handleCardClick = (id: string) => {
         navigate({ pathname: "/detail", search: `?artist=${id}` })
     }
 
+    // filters the entire data with two applied filter values(i.e country and gender).
     const getFileteredData = (country: string, gender: string) => {
         let final = soundChartsData
         if (country) {
@@ -55,10 +58,12 @@ const Home = () => {
         return final
     }
 
+    // on applying either filter(i.e country or gender), filtered data is returned by the function
     React.useEffect(() => {
         setData(getFileteredData(selectedCountry as string, selectedGender as string))
     }, [selectedCountry, selectedGender])
 
+    // returns a list of platforms from the data.
     const getPlatformList = (obj: any) => {
         let arr: string[] = []
         const length = Object.keys(obj).length
@@ -71,6 +76,8 @@ const Home = () => {
             ((item) => item !== "Err").filter((item) => item !== "gender")
         return finalfilter
     }
+
+    // generates list of countries and platform and stored in its respective useState hook when the data is available.
     React.useEffect(() => {
         const arrCountry = soundChartsData.map((item: any) => {
             return item.artist_country
